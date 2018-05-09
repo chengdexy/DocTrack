@@ -11,27 +11,42 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using static DocTrack.BLL.DocumentControl;
+
 namespace DocTrack
 {
     public partial class FrmDocument : Form
     {
+        private int _editDocNum = 0;
+
         public FrmDocument()
         {
             InitializeComponent();
         }
+        public FrmDocument(int DocumentID)
+        {
+            //编辑模式
+            _editDocNum = DocumentID;
+            InitializeComponent();
+        }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void BtnOK_Click(object sender, EventArgs e)
         {
             //Todo: validation check
             //if(checked)
             Document doc = new Document
             {
+                ID = _editDocNum,
                 Title = TxtTitle.Text,
                 SerialNumber = TxtSerialNumber.Text,
                 Quantity = Convert.ToInt32(TxtQuantity.Text),
                 DistributionScope = TxtDistributionScope.Text,
                 Remark = TxtRemark.Text
             };
+            //if (_editDocNum != 0)
+            //{
+            //doc.ID = _editDocNum;
+            //}
             switch (Convert.ToInt32(TxtSecretLevel.Text))
             {
                 case 0:
@@ -47,8 +62,29 @@ namespace DocTrack
                     doc.SecretLevel = SecretLevel.High;
                     break;
             }
-            DocumentControl.AddNewDocument(doc);
-            this.Close();
+            if (doc.ID == 0)
+            {
+                AddNewDocument(doc);
+            }
+            else
+            {
+                UpdateDocument(doc);
+            }
+            Close();
+        }
+
+        private void FrmDocument_Load(object sender, EventArgs e)
+        {
+            var doc = GetDocumentById(_editDocNum);
+            if (doc != null)
+            {
+                TxtTitle.Text = doc.Title;
+                TxtSerialNumber.Text = doc.SerialNumber;
+                TxtSecretLevel.Text = Convert.ToInt32(doc.SecretLevel).ToString();
+                TxtDistributionScope.Text = doc.DistributionScope;
+                TxtQuantity.Text = doc.Quantity.ToString();
+                TxtRemark.Text = doc.Remark;
+            }
         }
     }
 }

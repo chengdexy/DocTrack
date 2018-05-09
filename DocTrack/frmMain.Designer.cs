@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.DgvDocument = new System.Windows.Forms.DataGridView();
+            this.BtnNew = new System.Windows.Forms.Button();
+            this.colID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colSerialNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -36,7 +38,6 @@
             this.colQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colDistributionScope = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colRemark = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BtnNew = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.DgvDocument)).BeginInit();
             this.SuspendLayout();
             // 
@@ -51,6 +52,7 @@
             this.DgvDocument.ColumnHeadersHeight = 40;
             this.DgvDocument.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.DgvDocument.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.colID,
             this.colNumber,
             this.colTitle,
             this.colSerialNumber,
@@ -60,14 +62,34 @@
             this.colRemark});
             this.DgvDocument.Cursor = System.Windows.Forms.Cursors.Hand;
             this.DgvDocument.Location = new System.Drawing.Point(0, 0);
+            this.DgvDocument.Margin = new System.Windows.Forms.Padding(4);
             this.DgvDocument.MultiSelect = false;
             this.DgvDocument.Name = "DgvDocument";
             this.DgvDocument.ReadOnly = true;
             this.DgvDocument.RowHeadersVisible = false;
             this.DgvDocument.RowTemplate.Height = 23;
             this.DgvDocument.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DgvDocument.Size = new System.Drawing.Size(791, 399);
+            this.DgvDocument.Size = new System.Drawing.Size(1055, 499);
             this.DgvDocument.TabIndex = 0;
+            this.DgvDocument.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvDocument_CellContentDoubleClick);
+            // 
+            // BtnNew
+            // 
+            this.BtnNew.Location = new System.Drawing.Point(549, 519);
+            this.BtnNew.Margin = new System.Windows.Forms.Padding(4);
+            this.BtnNew.Name = "BtnNew";
+            this.BtnNew.Size = new System.Drawing.Size(100, 29);
+            this.BtnNew.TabIndex = 1;
+            this.BtnNew.Text = "登记";
+            this.BtnNew.UseVisualStyleBackColor = true;
+            this.BtnNew.Click += new System.EventHandler(this.BtnNew_Click);
+            // 
+            // colID
+            // 
+            this.colID.HeaderText = "ID";
+            this.colID.Name = "colID";
+            this.colID.ReadOnly = true;
+            this.colID.Visible = false;
             // 
             // colNumber
             // 
@@ -111,23 +133,14 @@
             this.colRemark.Name = "colRemark";
             this.colRemark.ReadOnly = true;
             // 
-            // BtnNew
-            // 
-            this.BtnNew.Location = new System.Drawing.Point(412, 415);
-            this.BtnNew.Name = "BtnNew";
-            this.BtnNew.Size = new System.Drawing.Size(75, 23);
-            this.BtnNew.TabIndex = 1;
-            this.BtnNew.Text = "登记";
-            this.BtnNew.UseVisualStyleBackColor = true;
-            this.BtnNew.Click += new System.EventHandler(this.BtnNew_Click);
-            // 
             // FrmMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(789, 450);
+            this.ClientSize = new System.Drawing.Size(1052, 562);
             this.Controls.Add(this.BtnNew);
             this.Controls.Add(this.DgvDocument);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FrmMain";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.FrmMain_Load);
@@ -138,6 +151,8 @@
 
         #endregion
         private System.Windows.Forms.DataGridView DgvDocument;
+        private System.Windows.Forms.Button BtnNew;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colID;
         private System.Windows.Forms.DataGridViewTextBoxColumn colNumber;
         private System.Windows.Forms.DataGridViewTextBoxColumn colTitle;
         private System.Windows.Forms.DataGridViewTextBoxColumn colSerialNumber;
@@ -145,7 +160,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colQuantity;
         private System.Windows.Forms.DataGridViewTextBoxColumn colDistributionScope;
         private System.Windows.Forms.DataGridViewTextBoxColumn colRemark;
-        private System.Windows.Forms.Button BtnNew;
     }
 }
 
