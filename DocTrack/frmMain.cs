@@ -10,6 +10,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using static DocTrack.BLL.DocumentControl;
+
 namespace DocTrack
 {
     public partial class FrmMain : Form
@@ -27,7 +29,7 @@ namespace DocTrack
         //向DataGridView填充数据
         private void PopulateDataGridView()
         {
-            var docList = DocumentControl.GetDocuments();
+            var docList = GetDocuments();
             DgvDocument.Rows.Clear();
             int i = 1;
             docList.ForEach(doc =>
@@ -46,12 +48,27 @@ namespace DocTrack
         }
 
         //双击数据表中某行
-        private void DgvDocument_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void DgvDocument_DoubleClick(object sender, EventArgs e)
         {
-            int editDocID = Convert.ToInt32(DgvDocument.SelectedRows[0].Cells["colID"].Value);
-            var frm = new FrmDocument(editDocID);
-            frm.ShowDialog();
-            PopulateDataGridView();
+            if (DgvDocument.SelectedRows.Count > 0)
+            {
+                int editDocID = Convert.ToInt32(DgvDocument.SelectedRows[0].Cells["colID"].Value);
+                var frm = new FrmDocument(editDocID);
+                frm.ShowDialog();
+                PopulateDataGridView();
+            }
+        }
+
+        private void BtnQuery_Click(object sender, EventArgs e)
+        {
+            string serialNum = TxtLocateSerialNumber.Text.Trim();
+            for (int i = 0; i < DgvDocument.Rows.Count; i++)
+            {
+                if (DgvDocument.Rows[i].Cells["colSerialNumber"].Value.ToString().IndexOf(serialNum) != -1)
+                {
+                    DgvDocument.Rows[i].Selected = true;
+                }
+            }
         }
     }
 }

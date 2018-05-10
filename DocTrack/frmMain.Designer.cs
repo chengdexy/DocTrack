@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.DgvDocument = new System.Windows.Forms.DataGridView();
-            this.BtnNew = new System.Windows.Forms.Button();
             this.colID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -38,6 +37,10 @@
             this.colQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colDistributionScope = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colRemark = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BtnNew = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.TxtLocateSerialNumber = new System.Windows.Forms.TextBox();
+            this.BtnQuery = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.DgvDocument)).BeginInit();
             this.SuspendLayout();
             // 
@@ -62,27 +65,15 @@
             this.colRemark});
             this.DgvDocument.Cursor = System.Windows.Forms.Cursors.Hand;
             this.DgvDocument.Location = new System.Drawing.Point(0, 0);
-            this.DgvDocument.Margin = new System.Windows.Forms.Padding(4);
             this.DgvDocument.MultiSelect = false;
             this.DgvDocument.Name = "DgvDocument";
             this.DgvDocument.ReadOnly = true;
             this.DgvDocument.RowHeadersVisible = false;
             this.DgvDocument.RowTemplate.Height = 23;
             this.DgvDocument.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DgvDocument.Size = new System.Drawing.Size(1055, 499);
+            this.DgvDocument.Size = new System.Drawing.Size(791, 399);
             this.DgvDocument.TabIndex = 0;
-            this.DgvDocument.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvDocument_CellContentDoubleClick);
-            // 
-            // BtnNew
-            // 
-            this.BtnNew.Location = new System.Drawing.Point(549, 519);
-            this.BtnNew.Margin = new System.Windows.Forms.Padding(4);
-            this.BtnNew.Name = "BtnNew";
-            this.BtnNew.Size = new System.Drawing.Size(100, 29);
-            this.BtnNew.TabIndex = 1;
-            this.BtnNew.Text = "登记";
-            this.BtnNew.UseVisualStyleBackColor = true;
-            this.BtnNew.Click += new System.EventHandler(this.BtnNew_Click);
+            this.DgvDocument.DoubleClick += new System.EventHandler(this.DgvDocument_DoubleClick);
             // 
             // colID
             // 
@@ -133,19 +124,58 @@
             this.colRemark.Name = "colRemark";
             this.colRemark.ReadOnly = true;
             // 
+            // BtnNew
+            // 
+            this.BtnNew.Location = new System.Drawing.Point(412, 415);
+            this.BtnNew.Name = "BtnNew";
+            this.BtnNew.Size = new System.Drawing.Size(75, 23);
+            this.BtnNew.TabIndex = 1;
+            this.BtnNew.Text = "登记";
+            this.BtnNew.UseVisualStyleBackColor = true;
+            this.BtnNew.Click += new System.EventHandler(this.BtnNew_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 420);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(77, 12);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "文号/电报号:";
+            // 
+            // TxtLocateSerialNumber
+            // 
+            this.TxtLocateSerialNumber.Location = new System.Drawing.Point(96, 420);
+            this.TxtLocateSerialNumber.Name = "TxtLocateSerialNumber";
+            this.TxtLocateSerialNumber.Size = new System.Drawing.Size(111, 21);
+            this.TxtLocateSerialNumber.TabIndex = 3;
+            // 
+            // BtnQuery
+            // 
+            this.BtnQuery.Location = new System.Drawing.Point(214, 417);
+            this.BtnQuery.Name = "BtnQuery";
+            this.BtnQuery.Size = new System.Drawing.Size(75, 23);
+            this.BtnQuery.TabIndex = 4;
+            this.BtnQuery.Text = "查询";
+            this.BtnQuery.UseVisualStyleBackColor = true;
+            this.BtnQuery.Click += new System.EventHandler(this.BtnQuery_Click);
+            // 
             // FrmMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1052, 562);
+            this.ClientSize = new System.Drawing.Size(789, 450);
+            this.Controls.Add(this.BtnQuery);
+            this.Controls.Add(this.TxtLocateSerialNumber);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.BtnNew);
             this.Controls.Add(this.DgvDocument);
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FrmMain";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.FrmMain_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DgvDocument)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -160,6 +190,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colQuantity;
         private System.Windows.Forms.DataGridViewTextBoxColumn colDistributionScope;
         private System.Windows.Forms.DataGridViewTextBoxColumn colRemark;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox TxtLocateSerialNumber;
+        private System.Windows.Forms.Button BtnQuery;
     }
 }
 

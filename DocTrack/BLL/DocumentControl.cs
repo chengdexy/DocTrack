@@ -67,5 +67,16 @@ namespace DocTrack.BLL
             Db.Documents.Remove(doc);
             Db.SaveChanges();
         }
+
+        //根据文号或电报号返回id
+        internal static int GetIdBySerialNumber(string serialNum)
+        {
+            var doc = Db.Documents.FirstOrDefault(d => d.SerialNumber == serialNum);
+            if (doc != null)
+            {
+                return doc.ID;
+            }
+            return 0;
+        }
     }
 }

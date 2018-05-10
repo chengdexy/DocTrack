@@ -43,10 +43,7 @@ namespace DocTrack
                 DistributionScope = TxtDistributionScope.Text,
                 Remark = TxtRemark.Text
             };
-            //if (_editDocNum != 0)
-            //{
-            //doc.ID = _editDocNum;
-            //}
+            //Todo: change the txtSecret to a select list
             switch (Convert.ToInt32(TxtSecretLevel.Text))
             {
                 case 0:
