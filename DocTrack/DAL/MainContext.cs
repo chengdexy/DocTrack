@@ -11,10 +11,7 @@ namespace DocTrack.DAL
 {
     class MainContext : DbContext
     {
-        public MainContext() : base("MainContext")
-        {
-
-        }
+        public MainContext() : base("MainContext") { }
 
         //DbSets
         public DbSet<Document> Documents { get; set; }

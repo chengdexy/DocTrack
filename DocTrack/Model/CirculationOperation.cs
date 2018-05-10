@@ -21,6 +21,7 @@ namespace DocTrack.Model
         public string HandmanName { get; set; }
         //目标人:传出-送阅领导 收回-由谁处取回
         public string TargetName { get; set; }
-
+        //发生时间
+        public DateTime HappenTime { get; set; }
     }
 }

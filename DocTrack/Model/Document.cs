@@ -29,6 +29,6 @@ namespace DocTrack.Model
         public string Remark { get; set; }
 
         //relationship
-        public virtual List<SubDocument> SubDocuments { get; set; }
+        public virtual ICollection<SubDocument> SubDocuments { get; set; }
     }
 }

@@ -13,6 +13,13 @@ namespace DocTrack.Model
         //relationship
         public virtual int DocumentID { get; set; }
         public virtual Document Document { get; set; }
-        public virtual List<CirculationOperation> CirculationOperations { get; set; }
+        public virtual ICollection<CirculationOperation> CirculationOperations { get; set; }
+
+        //method
+        public CirculationOperation LastOperation()
+        {
+            return CirculationOperations.OrderByDescending(co => co.ID).FirstOrDefault();
+
+        }
     }
 }

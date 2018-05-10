@@ -59,6 +59,7 @@ namespace DocTrack
             }
         }
 
+        //按文号查询按钮
         private void BtnQuery_Click(object sender, EventArgs e)
         {
             string serialNum = TxtLocateSerialNumber.Text.Trim();
@@ -68,6 +69,19 @@ namespace DocTrack
                 {
                     DgvDocument.Rows[i].Selected = true;
                 }
+            }
+        }
+
+        private void BtnSend_Click(object sender, EventArgs e)
+        {
+            //是否选了某行
+            if (DgvDocument.SelectedRows.Count > 0)
+            {
+                int selectedID = Convert.ToInt32(DgvDocument.SelectedRows[0].Cells["colID"].Value);
+                //打开该文档对应子文档列表
+                var frm = new FrmSubDocument(selectedID);
+                frm.ShowDialog();
+                PopulateDataGridView();
             }
         }
     }

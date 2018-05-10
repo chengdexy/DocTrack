@@ -41,6 +41,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.TxtLocateSerialNumber = new System.Windows.Forms.TextBox();
             this.BtnQuery = new System.Windows.Forms.Button();
+            this.BtnSend = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.DgvDocument)).BeginInit();
             this.SuspendLayout();
             // 
@@ -160,11 +161,22 @@
             this.BtnQuery.UseVisualStyleBackColor = true;
             this.BtnQuery.Click += new System.EventHandler(this.BtnQuery_Click);
             // 
+            // BtnSend
+            // 
+            this.BtnSend.Location = new System.Drawing.Point(494, 415);
+            this.BtnSend.Name = "BtnSend";
+            this.BtnSend.Size = new System.Drawing.Size(75, 23);
+            this.BtnSend.TabIndex = 5;
+            this.BtnSend.Text = "传出";
+            this.BtnSend.UseVisualStyleBackColor = true;
+            this.BtnSend.Click += new System.EventHandler(this.BtnSend_Click);
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(789, 450);
+            this.Controls.Add(this.BtnSend);
             this.Controls.Add(this.BtnQuery);
             this.Controls.Add(this.TxtLocateSerialNumber);
             this.Controls.Add(this.label1);
@@ -193,6 +205,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox TxtLocateSerialNumber;
         private System.Windows.Forms.Button BtnQuery;
+        private System.Windows.Forms.Button BtnSend;
     }
 }
 

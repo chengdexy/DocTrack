@@ -41,7 +41,11 @@ namespace DocTrack.Migrations
                             {
                                 new CirculationOperation
                                 {
-                                    SubDocumentID=1
+                                    SubDocumentID=1,
+                                    HandmanName="chengdexy",
+                                    OperationType=OperationType.Send,
+                                    TargetName="mr.zhou",
+                                    HappenTime=DateTime.Now
                                 }
                             }
                         }

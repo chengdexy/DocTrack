@@ -29,6 +29,19 @@ namespace DocTrack.BLL
             return Db.Documents.Count() == 0;
         }
 
+        //获取指定id的doc, 并同时包含其子集
+        internal static Document GetDocumentWithDetails(int id)
+        {
+            if (IsExist(id))
+            {
+                return Db.Documents
+                    .Include(doc => doc.SubDocuments.Select(sub => sub.CirculationOperations))
+                    .Where(doc => doc.ID == id)
+                    .FirstOrDefault();
+            }
+            return null;
+        }
+
         //将作为参数的document对象保存入数据库
         //前提: doc的各项属性已经过验证
         internal static void AddNewDocument(Document doc)
@@ -68,6 +81,7 @@ namespace DocTrack.BLL
             Db.SaveChanges();
         }
 
+        //Todo: 此方法未真正使用, 发布时如此todo仍在, 删除此方法
         //根据文号或电报号返回id
         internal static int GetIdBySerialNumber(string serialNum)
         {

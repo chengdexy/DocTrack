@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BLL\DocumentControl.cs" />
+    <Compile Include="BLL\ViewFactory.cs" />
     <Compile Include="Common\OperationType.cs" />
     <Compile Include="Common\SecretLevel.cs" />
     <Compile Include="DAL\MainContext.cs" />
@@ -67,17 +68,15 @@
     <Compile Include="FrmMain.Designer.cs">
       <DependentUpon>FrmMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201805090343570_Empty.cs" />
-    <Compile Include="Migrations\201805090343570_Empty.Designer.cs">
-      <DependentUpon>201805090343570_Empty.cs</DependentUpon>
+    <Compile Include="FrmSubDocument.cs">
+      <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Migrations\201805090413163_Init.cs" />
-    <Compile Include="Migrations\201805090413163_Init.Designer.cs">
-      <DependentUpon>201805090413163_Init.cs</DependentUpon>
+    <Compile Include="FrmSubDocument.Designer.cs">
+      <DependentUpon>FrmSubDocument.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201805090731284_a.cs" />
-    <Compile Include="Migrations\201805090731284_a.Designer.cs">
-      <DependentUpon>201805090731284_a.cs</DependentUpon>
+    <Compile Include="Migrations\201805100853045_Init.cs" />
+    <Compile Include="Migrations\201805100853045_Init.Designer.cs">
+      <DependentUpon>201805100853045_Init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\CirculationOperation.cs" />
@@ -85,20 +84,18 @@
     <Compile Include="Model\SubDocument.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VModel\DocView.cs" />
     <EmbeddedResource Include="FrmDocument.resx">
       <DependentUpon>FrmDocument.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmMain.resx">
       <DependentUpon>FrmMain.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201805090343570_Empty.resx">
-      <DependentUpon>201805090343570_Empty.cs</DependentUpon>
+    <EmbeddedResource Include="FrmSubDocument.resx">
+      <DependentUpon>FrmSubDocument.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201805090413163_Init.resx">
-      <DependentUpon>201805090413163_Init.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201805090731284_a.resx">
-      <DependentUpon>201805090731284_a.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201805100853045_Init.resx">
+      <DependentUpon>201805100853045_Init.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -13,7 +13,7 @@ namespace DocTrack.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201805090413163_Init"; }
+            get { return "201805100853045_Init"; }
         }
         
         string IMigrationMetadata.Source

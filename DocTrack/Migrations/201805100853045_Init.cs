@@ -13,6 +13,10 @@ namespace DocTrack.Migrations
                     {
                         ID = c.Int(nullable: false, identity: true),
                         SubDocumentID = c.Int(nullable: false),
+                        OperationType = c.Int(nullable: false),
+                        HandmanName = c.String(),
+                        TargetName = c.String(),
+                        HappenTime = c.DateTime(nullable: false),
                     })
                 .PrimaryKey(t => t.ID)
                 .ForeignKey("dbo.SubDocument", t => t.SubDocumentID, cascadeDelete: true)
