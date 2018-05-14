@@ -36,15 +36,64 @@ namespace DocTrack.Migrations
                     {
                         new SubDocument
                         {
-                            DocumentID=1,
                             CirculationOperations=new List<CirculationOperation>
                             {
                                 new CirculationOperation
                                 {
-                                    SubDocumentID=1,
-                                    HandmanName="chengdexy",
+                                    HandmanName="xy1",
                                     OperationType=OperationType.Send,
-                                    TargetName="mr.zhou",
+                                    TargetName="mr.1",
+                                    HappenTime=DateTime.Now
+                                }
+                            }
+                        },
+                        new SubDocument
+                        {
+                            CirculationOperations=new List<CirculationOperation>
+                            {
+                                new CirculationOperation
+                                {
+                                    HandmanName="xy3",
+                                    OperationType=OperationType.Send,
+                                    TargetName="mr.3",
+                                    HappenTime=DateTime.Now
+                                }
+                            }
+                        }
+                    }
+                },
+                new Document
+                {
+                    Title="标题2",
+                    SerialNumber="文号2",
+                    SecretLevel=SecretLevel.High,
+                    Quantity=5,
+                    DistributionScope="分发范围2",
+                    Remark="备注2",
+                    SubDocuments=new List<SubDocument>
+                    {
+                        new SubDocument
+                        {
+                            CirculationOperations=new List<CirculationOperation>
+                            {
+                                new CirculationOperation
+                                {
+                                    HandmanName="chengdexy2",
+                                    OperationType=OperationType.Send,
+                                    TargetName="mr.zhou2",
+                                    HappenTime=DateTime.Now
+                                }
+                            }
+                        },
+                        new SubDocument
+                        {
+                            CirculationOperations=new List<CirculationOperation>
+                            {
+                                new CirculationOperation
+                                {
+                                    HandmanName="xy4",
+                                    OperationType=OperationType.Send,
+                                    TargetName="mr.4",
                                     HappenTime=DateTime.Now
                                 }
                             }

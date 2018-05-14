@@ -31,83 +31,121 @@ namespace DocTrack
         //更改布局以适应当前窗体大小
         private void FormatGroups()
         {
-
-            groupBox1.Width = ClientRectangle.Width / 2;
-            groupBox1.Left = 0;
-            groupBox1.Top = 0;
-            groupBox1.Height = ClientRectangle.Height;
-            groupBox2.Width = ClientRectangle.Width / 2;
-            groupBox2.Height = groupBox1.Height / 2;
-            groupBox2.Top = groupBox1.Top;
-            groupBox2.Left = groupBox1.Left + groupBox1.Width;
-            groupBox3.Width = ClientRectangle.Width / 2;
-            groupBox3.Height = groupBox2.Height;
-            groupBox3.Top = groupBox2.Top + groupBox2.Height;
-            groupBox3.Left = groupBox2.Left;
+            //int solidHeight = ToolStrip.Height + MenuStrip.Height;  //菜单栏加工具栏的高
+            panel1.Width = ClientRectangle.Width / 2;
+            panel1.Left = 0;
+            panel1.Top = MenuStrip.Height;
+            panel1.Height = ClientRectangle.Height - StatusStrip.Height - MenuStrip.Height;
+            panel2.Width = ClientRectangle.Width / 2;
+            panel2.Height = panel1.Height / 2;
+            panel2.Top = panel1.Top;
+            panel2.Left = panel1.Left + panel1.Width;
+            panel3.Width = ClientRectangle.Width / 2;
+            panel3.Height = panel2.Height;
+            panel3.Top = panel2.Top + panel2.Height;
+            panel3.Left = panel2.Left;
         }
 
         //向DataGridView填充数据
         private void PopulateDataGridView()
         {
+            //嵌套调用 ShowDocs()=>ShowViews()=>ShowOpers()
+            //展示已存的数据
+            ShowDocs(0);
+        }
+
+        private void ShowDocs(int rowID)
+        {
             var docList = GetDocuments();
             DgvDocument.Rows.Clear();
-            int i = 1;
-            docList.ForEach(doc =>
+            if (docList != null)
             {
-                DgvDocument.Rows.Add(doc.ID, i, doc.Title, doc.SerialNumber, doc.SecretLevel, doc.Quantity, doc.DistributionScope, doc.Remark);
-                i++;
-            });
+                int i = 1;
+                docList.ForEach(doc =>
+                {
+                    DgvDocument.Rows.Add(doc.ID, i, doc.Title, doc.SerialNumber, doc.SecretLevel, doc.Quantity, doc.DistributionScope, doc.Remark);
+                    i++;
+                });
+                DgvDocument.Rows[rowID].Selected = true;
+                int docID = Convert.ToInt32(DgvDocument.Rows[rowID].Cells["colID"].Value);
+                ShowViews(docID, 0);
+            }
         }
 
-        //登记按钮
-        private void BtnNew_Click(object sender, EventArgs e)
+        private void ShowViews(int docID, int rowID)
         {
-            FrmDocument frm = new FrmDocument();
-            frm.ShowDialog();
-            PopulateDataGridView();
+            var doc = DocumentControl.GetDocumentWithDetails(docID);
+            var viewList = ViewFactory.DocToViews(doc);
+            DgvSubDoc.Rows.Clear();
+            if (viewList != null)
+            {
+                viewList.ForEach(view =>
+                    {
+                        DgvSubDoc.Rows.Add(
+                            view.ID,
+                            view.LastOperTime,
+                            view.HandmanName,
+                            view.OperationType,
+                            view.TargetName
+                            );
+                    });
+                DgvSubDoc.Rows[rowID].Selected = true;
+                int viewID = Convert.ToInt32(DgvSubDoc.Rows[rowID].Cells["colViewID"].Value);
+                ShowOpers(viewID, 0);
+            }
         }
 
-        //双击数据表中某行
-        private void DgvDocument_DoubleClick(object sender, EventArgs e)
+        private void ShowOpers(int viewID, int rowID)
         {
-            if (DgvDocument.SelectedRows.Count > 0)
+            var operList = DocumentControl.GetOperBySubID(viewID);
+            if (operList != null)
             {
-                int editDocID = Convert.ToInt32(DgvDocument.SelectedRows[0].Cells["colID"].Value);
-                var frm = new FrmDocument(editDocID);
-                frm.ShowDialog();
-                PopulateDataGridView();
+                DgvOper.Rows.Clear();
+                int i = 1;
+                operList.ForEach(oper =>
+                {
+                    DgvOper.Rows.Add(oper.ID, i, oper.HappenTime, oper.HandmanName, oper.OperationType, oper.TargetName);
+                });
+                DgvOper.Rows[rowID].Selected = true;
             }
         }
 
         //按文号查询按钮
         private void BtnQuery_Click(object sender, EventArgs e)
         {
-            string serialNum = TxtLocateSerialNumber.Text.Trim();
-            for (int i = 0; i < DgvDocument.Rows.Count; i++)
-            {
-                if (DgvDocument.Rows[i].Cells["colSerialNumber"].Value.ToString().IndexOf(serialNum) != -1)
-                {
-                    DgvDocument.Rows[i].Selected = true;
-                }
-            }
-        }
-
-        private void BtnOper_Click(object sender, EventArgs e)
-        {
-            //是否选了某行
-            if (DgvDocument.SelectedRows.Count > 0)
-            {
-                int selectedID = Convert.ToInt32(DgvDocument.SelectedRows[0].Cells["colID"].Value);
-                //打开该文档对应子文档列表
-                var frm = new FrmSubDocument(selectedID);
-                frm.ShowDialog();
-                PopulateDataGridView();
-            }
+            //string serialNum = TxtLocateSerialNumber.Text.Trim();
+            //for (int i = 0; i < DgvDocument.Rows.Count; i++)
+            //{
+            //    if (DgvDocument.Rows[i].Cells["colSerialNumber"].Value.ToString().IndexOf(serialNum) != -1)
+            //    {
+            //        DgvDocument.Rows[i].Selected = true;
+            //    }
+            //}
         }
 
         private void FrmMain_Resize(object sender, EventArgs e)
         {
             FormatGroups();
+        }
+
+        private void DgvDocument_Click(object sender, EventArgs e)
+        {
+            //todo:点击的是否有效数据行,是否是当前选中行
+            if (DgvDocument.SelectedRows != null)
+            {
+                int docID = Convert.ToInt32(DgvDocument.SelectedRows[0].Cells["colID"].Value);
+                ShowViews(docID, 0);
+            }
+
+        }
+
+        private void DgvSubDoc_Click(object sender, EventArgs e)
+        {
+            if (DgvSubDoc.SelectedRows != null)
+            {
+                int viewID = Convert.ToInt32(DgvSubDoc.SelectedRows[0].Cells["colViewID"].Value);
+                ShowOpers(viewID, 0);
+            }
         }
     }
 }

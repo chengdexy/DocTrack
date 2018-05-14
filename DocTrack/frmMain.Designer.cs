@@ -28,6 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.MenuStrip = new System.Windows.Forms.MenuStrip();
+            this.文件ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.StatusStrip = new System.Windows.Forms.StatusStrip();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.DgvDocument = new System.Windows.Forms.DataGridView();
             this.colID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -37,23 +41,62 @@
             this.colQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colDistributionScope = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colRemark = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BtnNew = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.TxtLocateSerialNumber = new System.Windows.Forms.TextBox();
-            this.BtnQuery = new System.Windows.Forms.Button();
-            this.BtnOper = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.DgvSubDoc = new System.Windows.Forms.DataGridView();
+            this.colViewID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colHandman = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colState = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colTarget = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.DgvOper = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MenuStrip.SuspendLayout();
+            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvDocument)).BeginInit();
-            this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DgvSubDoc)).BeginInit();
+            this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DgvOper)).BeginInit();
             this.SuspendLayout();
+            // 
+            // MenuStrip
+            // 
+            this.MenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.文件ToolStripMenuItem});
+            this.MenuStrip.Location = new System.Drawing.Point(0, 0);
+            this.MenuStrip.Name = "MenuStrip";
+            this.MenuStrip.Size = new System.Drawing.Size(1008, 25);
+            this.MenuStrip.TabIndex = 7;
+            this.MenuStrip.Text = "menuStrip1";
+            // 
+            // 文件ToolStripMenuItem
+            // 
+            this.文件ToolStripMenuItem.Name = "文件ToolStripMenuItem";
+            this.文件ToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
+            this.文件ToolStripMenuItem.Text = "文件";
+            // 
+            // StatusStrip
+            // 
+            this.StatusStrip.Location = new System.Drawing.Point(0, 707);
+            this.StatusStrip.Name = "StatusStrip";
+            this.StatusStrip.Size = new System.Drawing.Size(1008, 22);
+            this.StatusStrip.TabIndex = 8;
+            this.StatusStrip.Text = "statusStrip1";
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.DgvDocument);
+            this.panel1.Location = new System.Drawing.Point(12, 46);
+            this.panel1.Name = "panel1";
+            this.panel1.Padding = new System.Windows.Forms.Padding(3);
+            this.panel1.Size = new System.Drawing.Size(200, 100);
+            this.panel1.TabIndex = 9;
             // 
             // DgvDocument
             // 
@@ -76,16 +119,16 @@
             this.colRemark});
             this.DgvDocument.Cursor = System.Windows.Forms.Cursors.Hand;
             this.DgvDocument.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.DgvDocument.Location = new System.Drawing.Point(3, 17);
+            this.DgvDocument.Location = new System.Drawing.Point(3, 3);
             this.DgvDocument.MultiSelect = false;
             this.DgvDocument.Name = "DgvDocument";
             this.DgvDocument.ReadOnly = true;
             this.DgvDocument.RowHeadersVisible = false;
             this.DgvDocument.RowTemplate.Height = 23;
             this.DgvDocument.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DgvDocument.Size = new System.Drawing.Size(519, 627);
-            this.DgvDocument.TabIndex = 0;
-            this.DgvDocument.DoubleClick += new System.EventHandler(this.DgvDocument_DoubleClick);
+            this.DgvDocument.Size = new System.Drawing.Size(194, 94);
+            this.DgvDocument.TabIndex = 1;
+            this.DgvDocument.Click += new System.EventHandler(this.DgvDocument_Click);
             // 
             // colID
             // 
@@ -136,139 +179,180 @@
             this.colRemark.Name = "colRemark";
             this.colRemark.ReadOnly = true;
             // 
-            // BtnNew
+            // panel2
             // 
-            this.BtnNew.Location = new System.Drawing.Point(409, 694);
-            this.BtnNew.Name = "BtnNew";
-            this.BtnNew.Size = new System.Drawing.Size(75, 23);
-            this.BtnNew.TabIndex = 1;
-            this.BtnNew.Text = "登记";
-            this.BtnNew.UseVisualStyleBackColor = true;
-            this.BtnNew.Click += new System.EventHandler(this.BtnNew_Click);
+            this.panel2.Controls.Add(this.DgvSubDoc);
+            this.panel2.Location = new System.Drawing.Point(231, 46);
+            this.panel2.Name = "panel2";
+            this.panel2.Padding = new System.Windows.Forms.Padding(0, 3, 3, 3);
+            this.panel2.Size = new System.Drawing.Size(200, 100);
+            this.panel2.TabIndex = 10;
             // 
-            // label1
+            // DgvSubDoc
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(9, 699);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(77, 12);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "文号/电报号:";
+            this.DgvSubDoc.AllowUserToAddRows = false;
+            this.DgvSubDoc.AllowUserToDeleteRows = false;
+            this.DgvSubDoc.AllowUserToOrderColumns = true;
+            this.DgvSubDoc.AllowUserToResizeRows = false;
+            this.DgvSubDoc.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.DgvSubDoc.ColumnHeadersHeight = 40;
+            this.DgvSubDoc.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.DgvSubDoc.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.colViewID,
+            this.colTime,
+            this.colHandman,
+            this.colState,
+            this.colTarget});
+            this.DgvSubDoc.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.DgvSubDoc.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DgvSubDoc.Location = new System.Drawing.Point(0, 3);
+            this.DgvSubDoc.MultiSelect = false;
+            this.DgvSubDoc.Name = "DgvSubDoc";
+            this.DgvSubDoc.ReadOnly = true;
+            this.DgvSubDoc.RowHeadersVisible = false;
+            this.DgvSubDoc.RowTemplate.Height = 23;
+            this.DgvSubDoc.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.DgvSubDoc.Size = new System.Drawing.Size(197, 94);
+            this.DgvSubDoc.TabIndex = 2;
+            this.DgvSubDoc.Click += new System.EventHandler(this.DgvSubDoc_Click);
             // 
-            // TxtLocateSerialNumber
+            // colViewID
             // 
-            this.TxtLocateSerialNumber.Location = new System.Drawing.Point(93, 699);
-            this.TxtLocateSerialNumber.Name = "TxtLocateSerialNumber";
-            this.TxtLocateSerialNumber.Size = new System.Drawing.Size(111, 21);
-            this.TxtLocateSerialNumber.TabIndex = 3;
+            this.colViewID.HeaderText = "工作流";
+            this.colViewID.Name = "colViewID";
+            this.colViewID.ReadOnly = true;
             // 
-            // BtnQuery
+            // colTime
             // 
-            this.BtnQuery.Location = new System.Drawing.Point(211, 696);
-            this.BtnQuery.Name = "BtnQuery";
-            this.BtnQuery.Size = new System.Drawing.Size(75, 23);
-            this.BtnQuery.TabIndex = 4;
-            this.BtnQuery.Text = "查询";
-            this.BtnQuery.UseVisualStyleBackColor = true;
-            this.BtnQuery.Click += new System.EventHandler(this.BtnQuery_Click);
+            this.colTime.HeaderText = "时间";
+            this.colTime.Name = "colTime";
+            this.colTime.ReadOnly = true;
             // 
-            // BtnOper
+            // colHandman
             // 
-            this.BtnOper.Location = new System.Drawing.Point(491, 694);
-            this.BtnOper.Name = "BtnOper";
-            this.BtnOper.Size = new System.Drawing.Size(75, 23);
-            this.BtnOper.TabIndex = 5;
-            this.BtnOper.Text = "操作";
-            this.BtnOper.UseVisualStyleBackColor = true;
-            this.BtnOper.Click += new System.EventHandler(this.BtnOper_Click);
+            this.colHandman.HeaderText = "经手人";
+            this.colHandman.Name = "colHandman";
+            this.colHandman.ReadOnly = true;
             // 
-            // groupBox1
+            // colState
             // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.groupBox1.Controls.Add(this.DgvDocument);
-            this.groupBox1.Location = new System.Drawing.Point(4, 12);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(525, 647);
-            this.groupBox1.TabIndex = 6;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "groupBox1";
+            this.colState.HeaderText = "操作";
+            this.colState.Name = "colState";
+            this.colState.ReadOnly = true;
             // 
-            // groupBox2
+            // colTarget
             // 
-            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox2.AutoSize = true;
-            this.groupBox2.Controls.Add(this.dataGridView1);
-            this.groupBox2.Location = new System.Drawing.Point(535, 12);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(476, 313);
-            this.groupBox2.TabIndex = 1;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "groupBox2";
+            this.colTarget.HeaderText = "目标人";
+            this.colTarget.Name = "colTarget";
+            this.colTarget.ReadOnly = true;
             // 
-            // groupBox3
+            // panel3
             // 
-            this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox3.AutoSize = true;
-            this.groupBox3.Controls.Add(this.dataGridView2);
-            this.groupBox3.Location = new System.Drawing.Point(535, 331);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(473, 328);
-            this.groupBox3.TabIndex = 0;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "groupBox3";
+            this.panel3.Controls.Add(this.DgvOper);
+            this.panel3.Location = new System.Drawing.Point(491, 77);
+            this.panel3.Name = "panel3";
+            this.panel3.Padding = new System.Windows.Forms.Padding(0, 3, 3, 3);
+            this.panel3.Size = new System.Drawing.Size(200, 100);
+            this.panel3.TabIndex = 11;
             // 
-            // dataGridView1
+            // DgvOper
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(3, 17);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 23;
-            this.dataGridView1.Size = new System.Drawing.Size(470, 293);
-            this.dataGridView1.TabIndex = 0;
+            this.DgvOper.AllowUserToAddRows = false;
+            this.DgvOper.AllowUserToDeleteRows = false;
+            this.DgvOper.AllowUserToOrderColumns = true;
+            this.DgvOper.AllowUserToResizeRows = false;
+            this.DgvOper.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.DgvOper.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.DgvOper.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn3,
+            this.dataGridViewTextBoxColumn4,
+            this.dataGridViewTextBoxColumn5,
+            this.colType,
+            this.dataGridViewTextBoxColumn6});
+            this.DgvOper.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.DgvOper.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DgvOper.Location = new System.Drawing.Point(0, 3);
+            this.DgvOper.MultiSelect = false;
+            this.DgvOper.Name = "DgvOper";
+            this.DgvOper.ReadOnly = true;
+            this.DgvOper.RowHeadersVisible = false;
+            this.DgvOper.RowTemplate.Height = 23;
+            this.DgvOper.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.DgvOper.Size = new System.Drawing.Size(197, 94);
+            this.DgvOper.TabIndex = 2;
             // 
-            // dataGridView2
+            // dataGridViewTextBoxColumn2
             // 
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView2.Location = new System.Drawing.Point(3, 17);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.RowTemplate.Height = 23;
-            this.dataGridView2.Size = new System.Drawing.Size(467, 308);
-            this.dataGridView2.TabIndex = 0;
+            this.dataGridViewTextBoxColumn2.HeaderText = "ID";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.HeaderText = "序号";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.HeaderText = "时间";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.HeaderText = "经手人";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.ReadOnly = true;
+            // 
+            // colType
+            // 
+            this.colType.HeaderText = "操作";
+            this.colType.Name = "colType";
+            this.colType.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.HeaderText = "目标人";
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.dataGridViewTextBoxColumn6.ReadOnly = true;
             // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1008, 729);
-            this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.BtnOper);
-            this.Controls.Add(this.BtnQuery);
-            this.Controls.Add(this.TxtLocateSerialNumber);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.BtnNew);
+            this.Controls.Add(this.panel3);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.StatusStrip);
+            this.Controls.Add(this.MenuStrip);
+            this.MainMenuStrip = this.MenuStrip;
             this.Name = "FrmMain";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.FrmMain_Load);
             this.Resize += new System.EventHandler(this.FrmMain_Resize);
+            this.MenuStrip.ResumeLayout(false);
+            this.MenuStrip.PerformLayout();
+            this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.DgvDocument)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            this.panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.DgvSubDoc)).EndInit();
+            this.panel3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.DgvOper)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
+        private System.Windows.Forms.MenuStrip MenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem 文件ToolStripMenuItem;
+        private System.Windows.Forms.StatusStrip StatusStrip;
+        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.DataGridView DgvDocument;
-        private System.Windows.Forms.Button BtnNew;
         private System.Windows.Forms.DataGridViewTextBoxColumn colID;
         private System.Windows.Forms.DataGridViewTextBoxColumn colNumber;
         private System.Windows.Forms.DataGridViewTextBoxColumn colTitle;
@@ -277,15 +361,21 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colQuantity;
         private System.Windows.Forms.DataGridViewTextBoxColumn colDistributionScope;
         private System.Windows.Forms.DataGridViewTextBoxColumn colRemark;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox TxtLocateSerialNumber;
-        private System.Windows.Forms.Button BtnQuery;
-        private System.Windows.Forms.Button BtnOper;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.DataGridView DgvSubDoc;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.DataGridView DgvOper;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colType;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colViewID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colTime;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colHandman;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colState;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colTarget;
     }
 }
 
