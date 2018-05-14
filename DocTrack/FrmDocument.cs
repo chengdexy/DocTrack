@@ -83,5 +83,10 @@ namespace DocTrack
                 TxtRemark.Text = doc.Remark;
             }
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }

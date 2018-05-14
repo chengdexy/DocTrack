@@ -47,117 +47,104 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(40, 39);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(30, 31);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(45, 15);
+            this.label1.Size = new System.Drawing.Size(35, 12);
             this.label1.TabIndex = 0;
             this.label1.Text = "标题:";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(40, 84);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(30, 67);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(45, 15);
+            this.label2.Size = new System.Drawing.Size(35, 12);
             this.label2.TabIndex = 1;
             this.label2.Text = "文号:";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(40, 132);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Location = new System.Drawing.Point(30, 106);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(45, 15);
+            this.label3.Size = new System.Drawing.Size(35, 12);
             this.label3.TabIndex = 2;
             this.label3.Text = "密级:";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(40, 185);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Location = new System.Drawing.Point(30, 148);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(45, 15);
+            this.label4.Size = new System.Drawing.Size(35, 12);
             this.label4.TabIndex = 3;
             this.label4.Text = "份数:";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(40, 238);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Location = new System.Drawing.Point(30, 190);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(75, 15);
+            this.label5.Size = new System.Drawing.Size(59, 12);
             this.label5.TabIndex = 4;
             this.label5.Text = "分发范围:";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(40, 291);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Location = new System.Drawing.Point(30, 233);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(45, 15);
+            this.label6.Size = new System.Drawing.Size(35, 12);
             this.label6.TabIndex = 5;
             this.label6.Text = "备注:";
             // 
             // TxtTitle
             // 
-            this.TxtTitle.Location = new System.Drawing.Point(145, 39);
-            this.TxtTitle.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.TxtTitle.Location = new System.Drawing.Point(109, 31);
             this.TxtTitle.Name = "TxtTitle";
-            this.TxtTitle.Size = new System.Drawing.Size(132, 25);
+            this.TxtTitle.Size = new System.Drawing.Size(100, 21);
             this.TxtTitle.TabIndex = 6;
             // 
             // TxtSerialNumber
             // 
-            this.TxtSerialNumber.Location = new System.Drawing.Point(145, 84);
-            this.TxtSerialNumber.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.TxtSerialNumber.Location = new System.Drawing.Point(109, 67);
             this.TxtSerialNumber.Name = "TxtSerialNumber";
-            this.TxtSerialNumber.Size = new System.Drawing.Size(132, 25);
+            this.TxtSerialNumber.Size = new System.Drawing.Size(100, 21);
             this.TxtSerialNumber.TabIndex = 7;
             // 
             // TxtSecretLevel
             // 
-            this.TxtSecretLevel.Location = new System.Drawing.Point(145, 132);
-            this.TxtSecretLevel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.TxtSecretLevel.Location = new System.Drawing.Point(109, 106);
             this.TxtSecretLevel.Name = "TxtSecretLevel";
-            this.TxtSecretLevel.Size = new System.Drawing.Size(132, 25);
+            this.TxtSecretLevel.Size = new System.Drawing.Size(100, 21);
             this.TxtSecretLevel.TabIndex = 8;
             // 
             // TxtQuantity
             // 
-            this.TxtQuantity.Location = new System.Drawing.Point(145, 185);
-            this.TxtQuantity.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.TxtQuantity.Location = new System.Drawing.Point(109, 148);
             this.TxtQuantity.Name = "TxtQuantity";
-            this.TxtQuantity.Size = new System.Drawing.Size(132, 25);
+            this.TxtQuantity.Size = new System.Drawing.Size(100, 21);
             this.TxtQuantity.TabIndex = 9;
             // 
             // TxtDistributionScope
             // 
-            this.TxtDistributionScope.Location = new System.Drawing.Point(145, 238);
-            this.TxtDistributionScope.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.TxtDistributionScope.Location = new System.Drawing.Point(109, 190);
             this.TxtDistributionScope.Name = "TxtDistributionScope";
-            this.TxtDistributionScope.Size = new System.Drawing.Size(132, 25);
+            this.TxtDistributionScope.Size = new System.Drawing.Size(100, 21);
             this.TxtDistributionScope.TabIndex = 10;
             // 
             // TxtRemark
             // 
-            this.TxtRemark.Location = new System.Drawing.Point(145, 291);
-            this.TxtRemark.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.TxtRemark.Location = new System.Drawing.Point(109, 233);
             this.TxtRemark.Name = "TxtRemark";
-            this.TxtRemark.Size = new System.Drawing.Size(132, 25);
+            this.TxtRemark.Size = new System.Drawing.Size(100, 21);
             this.TxtRemark.TabIndex = 11;
             // 
             // BtnOK
             // 
-            this.BtnOK.Location = new System.Drawing.Point(473, 39);
-            this.BtnOK.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BtnOK.Location = new System.Drawing.Point(355, 31);
             this.BtnOK.Name = "BtnOK";
-            this.BtnOK.Size = new System.Drawing.Size(100, 29);
+            this.BtnOK.Size = new System.Drawing.Size(75, 23);
             this.BtnOK.TabIndex = 12;
             this.BtnOK.Text = "OK";
             this.BtnOK.UseVisualStyleBackColor = true;
@@ -165,19 +152,19 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(473, 76);
-            this.button2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button2.Location = new System.Drawing.Point(355, 61);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(100, 29);
+            this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 13;
             this.button2.Text = "Cancel";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // FrmDocument
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1067, 562);
+            this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.BtnOK);
             this.Controls.Add(this.TxtRemark);
@@ -192,7 +179,6 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "FrmDocument";
             this.Text = "FrmDocument";
             this.Load += new System.EventHandler(this.FrmDocument_Load);

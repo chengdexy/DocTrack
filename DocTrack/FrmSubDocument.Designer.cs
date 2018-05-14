@@ -34,6 +34,10 @@
             this.colHandman = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colState = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colTarget = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BtnSend = new System.Windows.Forms.Button();
+            this.BtnReceive = new System.Windows.Forms.Button();
+            this.BtnArchive = new System.Windows.Forms.Button();
+            this.BtnCancel = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.DgvSubDoc)).BeginInit();
             this.SuspendLayout();
             // 
@@ -60,6 +64,7 @@
             this.DgvSubDoc.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DgvSubDoc.Size = new System.Drawing.Size(800, 390);
             this.DgvSubDoc.TabIndex = 0;
+            this.DgvSubDoc.DoubleClick += new System.EventHandler(this.DgvSubDoc_DoubleClick);
             // 
             // colNumber
             // 
@@ -91,11 +96,53 @@
             this.colTarget.Name = "colTarget";
             this.colTarget.ReadOnly = true;
             // 
+            // BtnSend
+            // 
+            this.BtnSend.Location = new System.Drawing.Point(415, 410);
+            this.BtnSend.Name = "BtnSend";
+            this.BtnSend.Size = new System.Drawing.Size(75, 23);
+            this.BtnSend.TabIndex = 1;
+            this.BtnSend.Text = "传出";
+            this.BtnSend.UseVisualStyleBackColor = true;
+            this.BtnSend.Click += new System.EventHandler(this.BtnSend_Click);
+            // 
+            // BtnReceive
+            // 
+            this.BtnReceive.Location = new System.Drawing.Point(496, 410);
+            this.BtnReceive.Name = "BtnReceive";
+            this.BtnReceive.Size = new System.Drawing.Size(75, 23);
+            this.BtnReceive.TabIndex = 2;
+            this.BtnReceive.Text = "收回";
+            this.BtnReceive.UseVisualStyleBackColor = true;
+            // 
+            // BtnArchive
+            // 
+            this.BtnArchive.Location = new System.Drawing.Point(577, 410);
+            this.BtnArchive.Name = "BtnArchive";
+            this.BtnArchive.Size = new System.Drawing.Size(75, 23);
+            this.BtnArchive.TabIndex = 3;
+            this.BtnArchive.Text = "归档";
+            this.BtnArchive.UseVisualStyleBackColor = true;
+            // 
+            // BtnCancel
+            // 
+            this.BtnCancel.Location = new System.Drawing.Point(658, 410);
+            this.BtnCancel.Name = "BtnCancel";
+            this.BtnCancel.Size = new System.Drawing.Size(75, 23);
+            this.BtnCancel.TabIndex = 4;
+            this.BtnCancel.Text = "关闭";
+            this.BtnCancel.UseVisualStyleBackColor = true;
+            this.BtnCancel.Click += new System.EventHandler(this.BtnCancel_Click);
+            // 
             // FrmSubDocument
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.BtnCancel);
+            this.Controls.Add(this.BtnArchive);
+            this.Controls.Add(this.BtnReceive);
+            this.Controls.Add(this.BtnSend);
             this.Controls.Add(this.DgvSubDoc);
             this.Name = "FrmSubDocument";
             this.Text = "FrmSubDocument";
@@ -113,5 +160,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colHandman;
         private System.Windows.Forms.DataGridViewTextBoxColumn colState;
         private System.Windows.Forms.DataGridViewTextBoxColumn colTarget;
+        private System.Windows.Forms.Button BtnSend;
+        private System.Windows.Forms.Button BtnReceive;
+        private System.Windows.Forms.Button BtnArchive;
+        private System.Windows.Forms.Button BtnCancel;
     }
 }

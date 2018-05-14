@@ -29,6 +29,17 @@ namespace DocTrack.BLL
             return Db.Documents.Count() == 0;
         }
 
+
+        //根据子文档id,返回其包含的操作列表
+        internal static List<CirculationOperation> GetOperBySubID(int id)
+        {
+            return Db.SubDocuments
+                .Include(sd => sd.CirculationOperations)
+                .FirstOrDefault(sd => sd.ID == id)
+                .CirculationOperations
+                .ToList();
+        }
+
         //获取指定id的doc, 并同时包含其子集
         internal static Document GetDocumentWithDetails(int id)
         {

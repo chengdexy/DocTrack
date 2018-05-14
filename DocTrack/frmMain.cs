@@ -23,7 +23,27 @@ namespace DocTrack
 
         private void FrmMain_Load(object sender, EventArgs e)
         {
+            //初始化布局
+            FormatGroups();
             PopulateDataGridView();
+        }
+
+        //更改布局以适应当前窗体大小
+        private void FormatGroups()
+        {
+
+            groupBox1.Width = ClientRectangle.Width / 2;
+            groupBox1.Left = 0;
+            groupBox1.Top = 0;
+            groupBox1.Height = ClientRectangle.Height;
+            groupBox2.Width = ClientRectangle.Width / 2;
+            groupBox2.Height = groupBox1.Height / 2;
+            groupBox2.Top = groupBox1.Top;
+            groupBox2.Left = groupBox1.Left + groupBox1.Width;
+            groupBox3.Width = ClientRectangle.Width / 2;
+            groupBox3.Height = groupBox2.Height;
+            groupBox3.Top = groupBox2.Top + groupBox2.Height;
+            groupBox3.Left = groupBox2.Left;
         }
 
         //向DataGridView填充数据
@@ -72,7 +92,7 @@ namespace DocTrack
             }
         }
 
-        private void BtnSend_Click(object sender, EventArgs e)
+        private void BtnOper_Click(object sender, EventArgs e)
         {
             //是否选了某行
             if (DgvDocument.SelectedRows.Count > 0)
@@ -83,6 +103,11 @@ namespace DocTrack
                 frm.ShowDialog();
                 PopulateDataGridView();
             }
+        }
+
+        private void FrmMain_Resize(object sender, EventArgs e)
+        {
+            FormatGroups();
         }
     }
 }

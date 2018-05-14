@@ -45,5 +45,44 @@ namespace DocTrack
                     );
             });
         }
+
+        private void BtnCancel_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void BtnSend_Click(object sender, EventArgs e)
+        {
+            //是否选中合法项
+            //if (SelectedDataRow())
+            //{
+            //    4
+            //}
+        }
+
+        //判断当前选中行是否是数据行
+        private bool SelectedDataRow()
+        {
+            if (DgvSubDoc.SelectedRows.Count > 0 &&
+                DgvSubDoc.SelectedRows[0].Index >= 0 &&
+                DgvSubDoc.SelectedRows[0].Index < DgvSubDoc.RowCount - 1)
+            {
+                return true;
+
+            }
+            return false;
+        }
+
+        //双击数据行
+        private void DgvSubDoc_DoubleClick(object sender, EventArgs e)
+        {
+            if (SelectedDataRow())
+            {
+                int docViewID = Convert.ToInt32(DgvSubDoc.SelectedRows[0].Cells["colNumber"].Value);
+                FrmOperation frm = new FrmOperation(docViewID);
+                frm.ShowDialog();
+                PopulateDataGridView();
+            }
+        }
     }
 }
