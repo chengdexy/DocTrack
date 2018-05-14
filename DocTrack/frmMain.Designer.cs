@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.MenuStrip = new System.Windows.Forms.MenuStrip();
             this.文件ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.StatusStrip = new System.Windows.Forms.StatusStrip();
@@ -56,6 +57,13 @@
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ToolStrip = new System.Windows.Forms.ToolStrip();
+            this.CtxMenuDoc = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.登记公文ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.CtxMenuSub = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.CtxMenuOper = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.新增流转ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.新增操作ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuStrip.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvDocument)).BeginInit();
@@ -63,6 +71,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.DgvSubDoc)).BeginInit();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvOper)).BeginInit();
+            this.CtxMenuDoc.SuspendLayout();
+            this.CtxMenuSub.SuspendLayout();
+            this.CtxMenuOper.SuspendLayout();
             this.SuspendLayout();
             // 
             // MenuStrip
@@ -92,7 +103,7 @@
             // panel1
             // 
             this.panel1.Controls.Add(this.DgvDocument);
-            this.panel1.Location = new System.Drawing.Point(12, 46);
+            this.panel1.Location = new System.Drawing.Point(131, 467);
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(3);
             this.panel1.Size = new System.Drawing.Size(200, 100);
@@ -128,7 +139,8 @@
             this.DgvDocument.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DgvDocument.Size = new System.Drawing.Size(194, 94);
             this.DgvDocument.TabIndex = 1;
-            this.DgvDocument.Click += new System.EventHandler(this.DgvDocument_Click);
+            this.DgvDocument.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DgvDocument_CellMouseClick);
+            this.DgvDocument.MouseClick += new System.Windows.Forms.MouseEventHandler(this.DgvDocument_MouseClick);
             // 
             // colID
             // 
@@ -182,7 +194,7 @@
             // panel2
             // 
             this.panel2.Controls.Add(this.DgvSubDoc);
-            this.panel2.Location = new System.Drawing.Point(231, 46);
+            this.panel2.Location = new System.Drawing.Point(350, 467);
             this.panel2.Name = "panel2";
             this.panel2.Padding = new System.Windows.Forms.Padding(0, 3, 3, 3);
             this.panel2.Size = new System.Drawing.Size(200, 100);
@@ -214,7 +226,8 @@
             this.DgvSubDoc.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DgvSubDoc.Size = new System.Drawing.Size(197, 94);
             this.DgvSubDoc.TabIndex = 2;
-            this.DgvSubDoc.Click += new System.EventHandler(this.DgvSubDoc_Click);
+            this.DgvSubDoc.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DgvSubDoc_CellMouseClick);
+            this.DgvSubDoc.MouseClick += new System.Windows.Forms.MouseEventHandler(this.DgvSubDoc_MouseClick);
             // 
             // colViewID
             // 
@@ -249,7 +262,7 @@
             // panel3
             // 
             this.panel3.Controls.Add(this.DgvOper);
-            this.panel3.Location = new System.Drawing.Point(491, 77);
+            this.panel3.Location = new System.Drawing.Point(571, 467);
             this.panel3.Name = "panel3";
             this.panel3.Padding = new System.Windows.Forms.Padding(0, 3, 3, 3);
             this.panel3.Size = new System.Drawing.Size(200, 100);
@@ -262,6 +275,7 @@
             this.DgvOper.AllowUserToOrderColumns = true;
             this.DgvOper.AllowUserToResizeRows = false;
             this.DgvOper.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.DgvOper.ColumnHeadersHeight = 40;
             this.DgvOper.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.DgvOper.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn2,
@@ -281,6 +295,8 @@
             this.DgvOper.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DgvOper.Size = new System.Drawing.Size(197, 94);
             this.DgvOper.TabIndex = 2;
+            this.DgvOper.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DgvOper_CellMouseClick);
+            this.DgvOper.MouseClick += new System.Windows.Forms.MouseEventHandler(this.DgvOper_MouseClick);
             // 
             // dataGridViewTextBoxColumn2
             // 
@@ -319,11 +335,59 @@
             this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
             this.dataGridViewTextBoxColumn6.ReadOnly = true;
             // 
+            // ToolStrip
+            // 
+            this.ToolStrip.Location = new System.Drawing.Point(0, 25);
+            this.ToolStrip.Name = "ToolStrip";
+            this.ToolStrip.Size = new System.Drawing.Size(1008, 25);
+            this.ToolStrip.TabIndex = 12;
+            this.ToolStrip.Text = "toolStrip1";
+            // 
+            // CtxMenuDoc
+            // 
+            this.CtxMenuDoc.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.登记公文ToolStripMenuItem});
+            this.CtxMenuDoc.Name = "CtxMenuDoc";
+            this.CtxMenuDoc.Size = new System.Drawing.Size(125, 26);
+            // 
+            // 登记公文ToolStripMenuItem
+            // 
+            this.登记公文ToolStripMenuItem.Name = "登记公文ToolStripMenuItem";
+            this.登记公文ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.登记公文ToolStripMenuItem.Text = "登记公文";
+            // 
+            // CtxMenuSub
+            // 
+            this.CtxMenuSub.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.新增流转ToolStripMenuItem});
+            this.CtxMenuSub.Name = "CtxMenuSub";
+            this.CtxMenuSub.Size = new System.Drawing.Size(125, 26);
+            // 
+            // CtxMenuOper
+            // 
+            this.CtxMenuOper.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.新增操作ToolStripMenuItem});
+            this.CtxMenuOper.Name = "CtxMenuOper";
+            this.CtxMenuOper.Size = new System.Drawing.Size(125, 26);
+            // 
+            // 新增流转ToolStripMenuItem
+            // 
+            this.新增流转ToolStripMenuItem.Name = "新增流转ToolStripMenuItem";
+            this.新增流转ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.新增流转ToolStripMenuItem.Text = "新增流转";
+            // 
+            // 新增操作ToolStripMenuItem
+            // 
+            this.新增操作ToolStripMenuItem.Name = "新增操作ToolStripMenuItem";
+            this.新增操作ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.新增操作ToolStripMenuItem.Text = "新增操作";
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1008, 729);
+            this.Controls.Add(this.ToolStrip);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -342,6 +406,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.DgvSubDoc)).EndInit();
             this.panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.DgvOper)).EndInit();
+            this.CtxMenuDoc.ResumeLayout(false);
+            this.CtxMenuSub.ResumeLayout(false);
+            this.CtxMenuOper.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -376,6 +443,13 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colHandman;
         private System.Windows.Forms.DataGridViewTextBoxColumn colState;
         private System.Windows.Forms.DataGridViewTextBoxColumn colTarget;
+        private System.Windows.Forms.ToolStrip ToolStrip;
+        private System.Windows.Forms.ContextMenuStrip CtxMenuDoc;
+        private System.Windows.Forms.ToolStripMenuItem 登记公文ToolStripMenuItem;
+        private System.Windows.Forms.ContextMenuStrip CtxMenuSub;
+        private System.Windows.Forms.ContextMenuStrip CtxMenuOper;
+        private System.Windows.Forms.ToolStripMenuItem 新增流转ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 新增操作ToolStripMenuItem;
     }
 }
 

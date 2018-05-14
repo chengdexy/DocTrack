@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -16,26 +17,19 @@ namespace DocTrack
 {
     public partial class FrmMain : Form
     {
+        //构造
         public FrmMain()
         {
             InitializeComponent();
         }
-
-        private void FrmMain_Load(object sender, EventArgs e)
-        {
-            //初始化布局
-            FormatGroups();
-            PopulateDataGridView();
-        }
-
         //更改布局以适应当前窗体大小
         private void FormatGroups()
         {
-            //int solidHeight = ToolStrip.Height + MenuStrip.Height;  //菜单栏加工具栏的高
+            int solidHeight = ToolStrip.Height + MenuStrip.Height;  //菜单栏加工具栏的高
             panel1.Width = ClientRectangle.Width / 2;
             panel1.Left = 0;
-            panel1.Top = MenuStrip.Height;
-            panel1.Height = ClientRectangle.Height - StatusStrip.Height - MenuStrip.Height;
+            panel1.Top = solidHeight;
+            panel1.Height = ClientRectangle.Height - solidHeight;
             panel2.Width = ClientRectangle.Width / 2;
             panel2.Height = panel1.Height / 2;
             panel2.Top = panel1.Top;
@@ -45,16 +39,14 @@ namespace DocTrack
             panel3.Top = panel2.Top + panel2.Height;
             panel3.Left = panel2.Left;
         }
-
         //向DataGridView填充数据
         private void PopulateDataGridView()
         {
             //嵌套调用 ShowDocs()=>ShowViews()=>ShowOpers()
             //展示已存的数据
-            ShowDocs(0);
+            ShowDocs();
         }
-
-        private void ShowDocs(int rowID)
+        private void ShowDocs()
         {
             var docList = GetDocuments();
             DgvDocument.Rows.Clear();
@@ -66,13 +58,12 @@ namespace DocTrack
                     DgvDocument.Rows.Add(doc.ID, i, doc.Title, doc.SerialNumber, doc.SecretLevel, doc.Quantity, doc.DistributionScope, doc.Remark);
                     i++;
                 });
-                DgvDocument.Rows[rowID].Selected = true;
-                int docID = Convert.ToInt32(DgvDocument.Rows[rowID].Cells["colID"].Value);
-                ShowViews(docID, 0);
+                DgvDocument.Rows[0].Selected = true;
+                int docID = Convert.ToInt32(DgvDocument.Rows[0].Cells["colID"].Value);
+                ShowViews(docID);
             }
         }
-
-        private void ShowViews(int docID, int rowID)
+        private void ShowViews(int docID)
         {
             var doc = DocumentControl.GetDocumentWithDetails(docID);
             var viewList = ViewFactory.DocToViews(doc);
@@ -89,13 +80,12 @@ namespace DocTrack
                             view.TargetName
                             );
                     });
-                DgvSubDoc.Rows[rowID].Selected = true;
-                int viewID = Convert.ToInt32(DgvSubDoc.Rows[rowID].Cells["colViewID"].Value);
-                ShowOpers(viewID, 0);
+                DgvSubDoc.Rows[0].Selected = true;
+                int viewID = Convert.ToInt32(DgvSubDoc.Rows[0].Cells["colViewID"].Value);
+                ShowOpers(viewID);
             }
         }
-
-        private void ShowOpers(int viewID, int rowID)
+        private void ShowOpers(int viewID)
         {
             var operList = DocumentControl.GetOperBySubID(viewID);
             if (operList != null)
@@ -106,10 +96,16 @@ namespace DocTrack
                 {
                     DgvOper.Rows.Add(oper.ID, i, oper.HappenTime, oper.HandmanName, oper.OperationType, oper.TargetName);
                 });
-                DgvOper.Rows[rowID].Selected = true;
+                DgvOper.Rows[0].Selected = true;
             }
         }
-
+        //Load事件
+        private void FrmMain_Load(object sender, EventArgs e)
+        {
+            //初始化布局
+            FormatGroups();
+            PopulateDataGridView();
+        }
         //按文号查询按钮
         private void BtnQuery_Click(object sender, EventArgs e)
         {
@@ -122,29 +118,82 @@ namespace DocTrack
             //    }
             //}
         }
-
         private void FrmMain_Resize(object sender, EventArgs e)
         {
             FormatGroups();
         }
-
-        private void DgvDocument_Click(object sender, EventArgs e)
+        //点击DgvDocument
+        private void DgvDocument_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            //todo:点击的是否有效数据行,是否是当前选中行
-            if (DgvDocument.SelectedRows != null)
+            if (DgvDocument.Rows.Count > 0 && DgvDocument.SelectedRows != null)
             {
-                int docID = Convert.ToInt32(DgvDocument.SelectedRows[0].Cells["colID"].Value);
-                ShowViews(docID, 0);
+                if (e.Button == MouseButtons.Left)    //点击左键
+                {
+                    int docID = Convert.ToInt32(DgvDocument.SelectedRows[0].Cells["colID"].Value);
+                    ShowViews(docID);
+                }
+                else if (e.Button == MouseButtons.Right)  //点击右键
+                {
+                    if (e.RowIndex != -1)
+                    {
+                        DgvDocument.Rows[e.RowIndex].Selected = true;
+                    }
+                }
+
             }
-
         }
-
-        private void DgvSubDoc_Click(object sender, EventArgs e)
+        private void DgvDocument_MouseClick(object sender, MouseEventArgs e)
         {
-            if (DgvSubDoc.SelectedRows != null)
+            if (e.Button == MouseButtons.Right)
             {
-                int viewID = Convert.ToInt32(DgvSubDoc.SelectedRows[0].Cells["colViewID"].Value);
-                ShowOpers(viewID, 0);
+                CtxMenuDoc.Show(MousePosition.X, MousePosition.Y);
+            }
+        }
+        //点击DgvSubDoc
+        private void DgvSubDoc_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (DgvSubDoc.Rows.Count > 0 && DgvSubDoc.SelectedRows != null)
+            {
+                if (e.Button == MouseButtons.Left)
+                {
+                    int viewID = Convert.ToInt32(DgvSubDoc.SelectedRows[0].Cells["colViewID"].Value);
+                    ShowOpers(viewID);
+                }
+                else if (e.Button == MouseButtons.Right)
+                {
+                    if (e.RowIndex != -1)
+                    {
+                        DgvSubDoc.Rows[e.RowIndex].Selected = true;
+                    }
+                }
+            }
+        }
+        private void DgvSubDoc_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                CtxMenuSub.Show(MousePosition.X, MousePosition.Y);
+            }
+        }
+        //点击DgvOper
+        private void DgvOper_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (DgvOper.Rows.Count > 0 && DgvOper.SelectedRows != null)
+            {
+                if (e.Button == MouseButtons.Right)     //右键
+                {
+                    if (e.RowIndex != -1)
+                    {
+                        DgvOper.Rows[e.RowIndex].Selected = true;
+                    }
+                }
+            }
+        }
+        private void DgvOper_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                CtxMenuOper.Show(MousePosition.X, MousePosition.Y);
             }
         }
     }
