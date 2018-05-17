@@ -51,19 +51,24 @@
             this.colTarget = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel3 = new System.Windows.Forms.Panel();
             this.DgvOper = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ToolStrip = new System.Windows.Forms.ToolStrip();
             this.CtxMenuDoc = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.登记公文ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.CtxMenuSub = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.CtxMenuOper = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.新增流转ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.CtxMenuOper = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.新增操作ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.删除公文ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.修改内容ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.删除流转ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.删除操作ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.colOperID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colOperNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colHappenTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colOperHandman = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colOperTarget = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MenuStrip.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvDocument)).BeginInit();
@@ -278,12 +283,12 @@
             this.DgvOper.ColumnHeadersHeight = 40;
             this.DgvOper.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.DgvOper.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn2,
-            this.dataGridViewTextBoxColumn3,
-            this.dataGridViewTextBoxColumn4,
-            this.dataGridViewTextBoxColumn5,
+            this.colOperID,
+            this.colOperNumber,
+            this.colHappenTime,
+            this.colOperHandman,
             this.colType,
-            this.dataGridViewTextBoxColumn6});
+            this.colOperTarget});
             this.DgvOper.Cursor = System.Windows.Forms.Cursors.Hand;
             this.DgvOper.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DgvOper.Location = new System.Drawing.Point(0, 3);
@@ -298,43 +303,6 @@
             this.DgvOper.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DgvOper_CellMouseClick);
             this.DgvOper.MouseClick += new System.Windows.Forms.MouseEventHandler(this.DgvOper_MouseClick);
             // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.HeaderText = "ID";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            this.dataGridViewTextBoxColumn2.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.HeaderText = "序号";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.HeaderText = "时间";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.HeaderText = "经手人";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.ReadOnly = true;
-            // 
-            // colType
-            // 
-            this.colType.HeaderText = "操作";
-            this.colType.Name = "colType";
-            this.colType.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            this.dataGridViewTextBoxColumn6.HeaderText = "目标人";
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            this.dataGridViewTextBoxColumn6.ReadOnly = true;
-            // 
             // ToolStrip
             // 
             this.ToolStrip.Location = new System.Drawing.Point(0, 25);
@@ -346,41 +314,119 @@
             // CtxMenuDoc
             // 
             this.CtxMenuDoc.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.登记公文ToolStripMenuItem});
+            this.登记公文ToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.删除公文ToolStripMenuItem,
+            this.修改内容ToolStripMenuItem});
             this.CtxMenuDoc.Name = "CtxMenuDoc";
-            this.CtxMenuDoc.Size = new System.Drawing.Size(125, 26);
+            this.CtxMenuDoc.Size = new System.Drawing.Size(125, 76);
             // 
             // 登记公文ToolStripMenuItem
             // 
             this.登记公文ToolStripMenuItem.Name = "登记公文ToolStripMenuItem";
-            this.登记公文ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.登记公文ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.登记公文ToolStripMenuItem.Text = "登记公文";
+            this.登记公文ToolStripMenuItem.Click += new System.EventHandler(this.登记公文ToolStripMenuItem_Click);
             // 
             // CtxMenuSub
             // 
             this.CtxMenuSub.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.新增流转ToolStripMenuItem});
+            this.新增流转ToolStripMenuItem,
+            this.删除流转ToolStripMenuItem});
             this.CtxMenuSub.Name = "CtxMenuSub";
-            this.CtxMenuSub.Size = new System.Drawing.Size(125, 26);
-            // 
-            // CtxMenuOper
-            // 
-            this.CtxMenuOper.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.新增操作ToolStripMenuItem});
-            this.CtxMenuOper.Name = "CtxMenuOper";
-            this.CtxMenuOper.Size = new System.Drawing.Size(125, 26);
+            this.CtxMenuSub.Size = new System.Drawing.Size(125, 48);
             // 
             // 新增流转ToolStripMenuItem
             // 
             this.新增流转ToolStripMenuItem.Name = "新增流转ToolStripMenuItem";
-            this.新增流转ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.新增流转ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.新增流转ToolStripMenuItem.Text = "新增流转";
+            this.新增流转ToolStripMenuItem.Click += new System.EventHandler(this.新增流转ToolStripMenuItem_Click);
+            // 
+            // CtxMenuOper
+            // 
+            this.CtxMenuOper.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.新增操作ToolStripMenuItem,
+            this.删除操作ToolStripMenuItem});
+            this.CtxMenuOper.Name = "CtxMenuOper";
+            this.CtxMenuOper.Size = new System.Drawing.Size(181, 70);
             // 
             // 新增操作ToolStripMenuItem
             // 
             this.新增操作ToolStripMenuItem.Name = "新增操作ToolStripMenuItem";
-            this.新增操作ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.新增操作ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.新增操作ToolStripMenuItem.Text = "新增操作";
+            this.新增操作ToolStripMenuItem.Click += new System.EventHandler(this.新增操作ToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            // 
+            // 删除公文ToolStripMenuItem
+            // 
+            this.删除公文ToolStripMenuItem.Name = "删除公文ToolStripMenuItem";
+            this.删除公文ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.删除公文ToolStripMenuItem.Text = "删除公文";
+            this.删除公文ToolStripMenuItem.Click += new System.EventHandler(this.删除公文ToolStripMenuItem_Click);
+            // 
+            // 修改内容ToolStripMenuItem
+            // 
+            this.修改内容ToolStripMenuItem.Name = "修改内容ToolStripMenuItem";
+            this.修改内容ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.修改内容ToolStripMenuItem.Text = "修改内容";
+            this.修改内容ToolStripMenuItem.Click += new System.EventHandler(this.修改内容ToolStripMenuItem_Click);
+            // 
+            // 删除流转ToolStripMenuItem
+            // 
+            this.删除流转ToolStripMenuItem.Name = "删除流转ToolStripMenuItem";
+            this.删除流转ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.删除流转ToolStripMenuItem.Text = "删除流转";
+            this.删除流转ToolStripMenuItem.Click += new System.EventHandler(this.删除流转ToolStripMenuItem_Click);
+            // 
+            // 删除操作ToolStripMenuItem
+            // 
+            this.删除操作ToolStripMenuItem.Name = "删除操作ToolStripMenuItem";
+            this.删除操作ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.删除操作ToolStripMenuItem.Text = "删除操作";
+            this.删除操作ToolStripMenuItem.Click += new System.EventHandler(this.删除操作ToolStripMenuItem_Click);
+            // 
+            // colOperID
+            // 
+            this.colOperID.HeaderText = "ID";
+            this.colOperID.Name = "colOperID";
+            this.colOperID.ReadOnly = true;
+            this.colOperID.Visible = false;
+            // 
+            // colOperNumber
+            // 
+            this.colOperNumber.HeaderText = "序号";
+            this.colOperNumber.Name = "colOperNumber";
+            this.colOperNumber.ReadOnly = true;
+            // 
+            // colHappenTime
+            // 
+            this.colHappenTime.HeaderText = "时间";
+            this.colHappenTime.Name = "colHappenTime";
+            this.colHappenTime.ReadOnly = true;
+            // 
+            // colOperHandman
+            // 
+            this.colOperHandman.HeaderText = "经手人";
+            this.colOperHandman.Name = "colOperHandman";
+            this.colOperHandman.ReadOnly = true;
+            // 
+            // colType
+            // 
+            this.colType.HeaderText = "操作";
+            this.colType.Name = "colType";
+            this.colType.ReadOnly = true;
+            // 
+            // colOperTarget
+            // 
+            this.colOperTarget.HeaderText = "目标人";
+            this.colOperTarget.Name = "colOperTarget";
+            this.colOperTarget.ReadOnly = true;
             // 
             // FrmMain
             // 
@@ -432,12 +478,6 @@
         private System.Windows.Forms.DataGridView DgvSubDoc;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.DataGridView DgvOper;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colType;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
         private System.Windows.Forms.DataGridViewTextBoxColumn colViewID;
         private System.Windows.Forms.DataGridViewTextBoxColumn colTime;
         private System.Windows.Forms.DataGridViewTextBoxColumn colHandman;
@@ -450,6 +490,17 @@
         private System.Windows.Forms.ContextMenuStrip CtxMenuOper;
         private System.Windows.Forms.ToolStripMenuItem 新增流转ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 新增操作ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem 删除公文ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 修改内容ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 删除流转ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 删除操作ToolStripMenuItem;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colOperID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colOperNumber;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colHappenTime;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colOperHandman;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colType;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colOperTarget;
     }
 }
 

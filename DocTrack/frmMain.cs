@@ -11,8 +11,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-using static DocTrack.BLL.DocumentControl;
-
 namespace DocTrack
 {
     public partial class FrmMain : Form
@@ -48,9 +46,9 @@ namespace DocTrack
         }
         private void ShowDocs()
         {
-            var docList = GetDocuments();
+            var docList = DocumentControl.GetDocuments();
             DgvDocument.Rows.Clear();
-            if (docList != null)
+            if (docList != null && docList.Count > 0)
             {
                 int i = 1;
                 docList.ForEach(doc =>
@@ -68,7 +66,7 @@ namespace DocTrack
             var doc = DocumentControl.GetDocumentWithDetails(docID);
             var viewList = ViewFactory.DocToViews(doc);
             DgvSubDoc.Rows.Clear();
-            if (viewList != null)
+            if (viewList != null && viewList.Count > 0)
             {
                 viewList.ForEach(view =>
                     {
@@ -84,13 +82,17 @@ namespace DocTrack
                 int viewID = Convert.ToInt32(DgvSubDoc.Rows[0].Cells["colViewID"].Value);
                 ShowOpers(viewID);
             }
+            else
+            {
+                ShowOpers(0);
+            }
         }
         private void ShowOpers(int viewID)
         {
             var operList = DocumentControl.GetOperBySubID(viewID);
-            if (operList != null)
+            DgvOper.Rows.Clear();
+            if (operList != null && operList.Count > 0)
             {
-                DgvOper.Rows.Clear();
                 int i = 1;
                 operList.ForEach(oper =>
                 {
@@ -194,6 +196,71 @@ namespace DocTrack
             if (e.Button == MouseButtons.Right)
             {
                 CtxMenuOper.Show(MousePosition.X, MousePosition.Y);
+            }
+        }
+        //pop菜单项
+        private void 删除公文ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string title = DgvDocument.SelectedRows[0].Cells["colTitle"].Value.ToString();
+            int docID = Convert.ToInt32(DgvDocument.SelectedRows[0].Cells["colID"].Value);
+            if (MessageBox.Show($"确定删除《{title}》吗?", "删除确认", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                DocumentControl.DeleteDocument(docID);
+            }
+            PopulateDataGridView();
+        }
+        private void 修改内容ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int docID = Convert.ToInt32(DgvDocument.SelectedRows[0].Cells["colID"].Value);
+            FrmEditDoc frm = new FrmEditDoc(docID);
+            frm.ShowDialog();
+            PopulateDataGridView();
+        }
+        private void 登记公文ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmEditDoc frm = new FrmEditDoc();
+            frm.ShowDialog();
+            PopulateDataGridView();
+        }
+        private void 新增流转ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //新增流转的逻辑是创建一个新的oper对象及其对应的一个sub对象到数据库
+            //添加完成后刷新界面,即可获得想要的结果
+            int docID = Convert.ToInt32(DgvDocument.SelectedRows[0].Cells["colID"].Value);
+            DocumentControl.CreateNewSubDoc(docID);
+            ShowViews(docID);
+        }
+        private void 删除流转ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //Todo:这里先实现功能,不考虑删除的前提条件
+            //viewID是一个view的唯一识别,无视其所属的doc
+            int docID = Convert.ToInt32(DgvDocument.SelectedRows[0].Cells["colID"].Value);
+            int viewID = Convert.ToInt32(DgvSubDoc.SelectedRows[0].Cells["colViewID"].Value);
+            if (MessageBox.Show($"确定删除流转{viewID}吗?", "删除确认", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                DocumentControl.DeleteSubDocById(viewID);
+            }
+            ShowViews(docID);
+        }
+        private void 新增操作ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //只需传递subdoc的id即可
+            int viewID = Convert.ToInt32(DgvSubDoc.SelectedRows[0].Cells["colViewID"].Value);
+            FrmEditOper frm = new FrmEditOper(viewID);
+            frm.ShowDialog();
+            ShowOpers(viewID);
+        }
+
+        private void 删除操作ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //依据oper的id直接删除
+            int operID = Convert.ToInt32(DgvOper.SelectedRows[0].Cells["colOperID"].Value);
+            int viewID = Convert.ToInt32(DgvSubDoc.SelectedRows[0].Cells["colViewID"].Value);
+            int operNum = Convert.ToInt32(DgvOper.SelectedRows[0].Cells["colOperNumber"].Value);
+            if (MessageBox.Show($"确定删除{operNum}号操作记录吗?", "删除确认", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                DocumentControl.DeleteOperationById(operID);
+                ShowOpers(viewID);
             }
         }
     }

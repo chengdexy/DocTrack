@@ -33,11 +33,15 @@ namespace DocTrack.BLL
         //根据子文档id,返回其包含的操作列表
         internal static List<CirculationOperation> GetOperBySubID(int id)
         {
-            return Db.SubDocuments
-                .Include(sd => sd.CirculationOperations)
-                .FirstOrDefault(sd => sd.ID == id)
-                .CirculationOperations
-                .ToList();
+            if (id != 0)
+            {
+                return Db.SubDocuments
+                    .Include(sd => sd.CirculationOperations)
+                    .FirstOrDefault(sd => sd.ID == id)
+                    .CirculationOperations
+                    .ToList();
+            }
+            return null;
         }
 
         //获取指定id的doc, 并同时包含其子集
@@ -70,6 +74,13 @@ namespace DocTrack.BLL
             }
             return null;
         }
+        //向指定id的subdoc中插入一条操作
+        internal static void AddNewOperation(int viewID, CirculationOperation oper)
+        {
+            var sub = GetSubDocWithDetails(viewID);
+            sub.CirculationOperations.Add(oper);
+            Db.SaveChanges();
+        }
 
         //返回指定id的document对象是否存在
         private static bool IsExist(int id)
@@ -80,14 +91,14 @@ namespace DocTrack.BLL
         //更新指定doc内容
         internal static void UpdateDocument(Document newDoc)
         {
-            DeleteDocument(newDoc.ID);
             AddNewDocument(newDoc);
+            DeleteDocument(newDoc.ID);
         }
 
         //删除指定id的doc
         internal static void DeleteDocument(int id)
         {
-            var doc = Db.Documents.Find(id);
+            var doc = GetDocumentWithDetails(id);
             Db.Documents.Remove(doc);
             Db.SaveChanges();
         }
@@ -102,6 +113,60 @@ namespace DocTrack.BLL
                 return doc.ID;
             }
             return 0;
+        }
+        //创建一个全新的工作流,用于执行支线流程
+        internal static void CreateNewSubDoc(int id)
+        {
+            Document doc = GetDocumentWithDetails(id);
+            doc.SubDocuments.Add(new SubDocument
+            {
+                CirculationOperations = new List<CirculationOperation>
+                {
+                    new CirculationOperation
+                    {
+                        OperationType=Common.OperationType.New,
+                        HandmanName="系统",
+                        TargetName="系统",
+                        HappenTime=DateTime.Now
+                    }
+                }
+            });
+            Db.Entry(doc).State = EntityState.Modified;
+            Db.SaveChanges();
+        }
+        //依据viewid删除其对应的subdocument数据(其下子集也被删除)
+        internal static void DeleteSubDocById(int id)
+        {
+            var sub = GetSubDocWithDetails(id);
+            Db.SubDocuments.Remove(sub);
+            Db.SaveChanges();
+        }
+
+        private static SubDocument GetSubDocWithDetails(int id)
+        {
+            if (IsExistSubDoc(id))
+            {
+                return Db.SubDocuments
+                    .Include(sub => sub.CirculationOperations)
+                    .Where(sub => sub.ID == id)
+                    .FirstOrDefault();
+            }
+            return null;
+        }
+
+        private static bool IsExistSubDoc(int id)
+        {
+            return Db.SubDocuments.Find(id) != null;
+        }
+        //依据operID删除指定的操作记录
+        internal static void DeleteOperationById(int operID)
+        {
+            var oper = Db.CirculationOperations.Find(operID);
+            if (oper != null)
+            {
+                Db.Entry(oper).State = EntityState.Deleted;
+                Db.SaveChanges();
+            }
         }
     }
 }
