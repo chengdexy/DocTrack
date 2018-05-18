@@ -15,6 +15,7 @@ namespace DocTrack.DAL
 
         //DbSets
         public DbSet<Document> Documents { get; set; }
+        public DbSet<DocumentType> DocumentTypes { get; set; }
         public DbSet<SubDocument> SubDocuments { get; set; }
         public DbSet<CirculationOperation> CirculationOperations { get; set; }
 

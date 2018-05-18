@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DocTrack.BLL;
+using DocTrack.Common;
 using DocTrack.Model;
 
 namespace DocTrack
@@ -29,15 +30,21 @@ namespace DocTrack
 
         private void FrmEditDoc_Load(object sender, EventArgs e)
         {
+            //初始化文件类型下拉框
+            CboDocumentType.DataSource = DocumentControl.GetDocTypeList();
+            CboDocumentType.DisplayMember = "Name";
+            //编辑模式填充数据
             if (_id != 0)
             {
                 Document doc = DocumentControl.GetDocumentById(_id);
                 TxtTitle.Text = doc.Title;
                 TxtSerialNum.Text = doc.SerialNumber;
-                TxtSecretLevel.Text = doc.SecretLevel.ToString();
-                TxtQuantity.Text = doc.Quantity.ToString();
+                CboSecretLevel.SelectedIndex = (int)doc.SecretLevel;
+                NumQuantity.Value = doc.Quantity;
                 TxtDistributionScope.Text = doc.DistributionScope;
                 TxtRemark.Text = doc.Remark;
+                CboDocumentType.SelectedItem = doc.DocumentType;
+                DtpCheckTime.Value = doc.CheckTime;
             }
         }
 
@@ -48,27 +55,13 @@ namespace DocTrack
             {
                 Title = TxtTitle.Text.Trim(),
                 SerialNumber = TxtSerialNum.Text.Trim(),
-                Quantity = Convert.ToInt32(TxtQuantity.Text.Trim()),
+                Quantity = Convert.ToInt32(NumQuantity.Value),
                 DistributionScope = TxtDistributionScope.Text.Trim(),
                 Remark = TxtRemark.Text.Trim(),
+                DocumentType = (DocumentType)CboDocumentType.SelectedItem,
+                SecretLevel = (SecretLevel)Enum.Parse(typeof(SecretLevel), CboSecretLevel.SelectedIndex.ToString()),
+                CheckTime = DtpCheckTime.Value
             };
-            switch (TxtSecretLevel.Text.Trim())
-            {
-                case "None":
-                    doc.SecretLevel = Common.SecretLevel.None;
-                    break;
-                case "Low":
-                    doc.SecretLevel = Common.SecretLevel.Low;
-                    break;
-                case "Normal":
-                    doc.SecretLevel = Common.SecretLevel.Normal;
-                    break;
-                case "High":
-                    doc.SecretLevel = Common.SecretLevel.High;
-                    break;
-                default:
-                    throw new Exception("错误的密级参数被传入!FrmEditDoc.cs 第70行");
-            }
             if (_id == 0)
             {
                 //新增模式

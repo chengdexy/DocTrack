@@ -19,8 +19,13 @@ namespace DocTrack.Model
         public string Title { get; set; }
         //文档编号: 公文--文号, 电报--电报号
         public string SerialNumber { get; set; }
+        //登记时间
+        public DateTime CheckTime { get; set; }
         //密级: 0-无密级 1-秘密 2-机密 3-绝密
         public SecretLevel SecretLevel { get; set; }
+        //文件类别
+        public virtual int DocumentTypeID { get; set; }
+        public virtual DocumentType DocumentType { get; set; }
         //来文份数
         public int Quantity { get; set; }
         //分发范围

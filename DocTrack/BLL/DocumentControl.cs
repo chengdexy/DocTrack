@@ -29,6 +29,11 @@ namespace DocTrack.BLL
             return Db.Documents.Count() == 0;
         }
 
+        internal static List<DocumentType> GetDocTypeList()
+        {
+            return Db.DocumentTypes.ToList();
+        }
+
 
         //根据子文档id,返回其包含的操作列表
         internal static List<CirculationOperation> GetOperBySubID(int id)
@@ -91,8 +96,9 @@ namespace DocTrack.BLL
         //更新指定doc内容
         internal static void UpdateDocument(Document newDoc)
         {
+            int id = newDoc.ID;
             AddNewDocument(newDoc);
-            DeleteDocument(newDoc.ID);
+            DeleteDocument(id);
         }
 
         //删除指定id的doc

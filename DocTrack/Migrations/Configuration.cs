@@ -103,6 +103,19 @@ namespace DocTrack.Migrations
             //};
             //docList.ForEach(dl => context.Documents.AddOrUpdate(doc => doc.Title, dl));
             //context.SaveChanges();
+            var typeList = new List<DocumentType>
+            {
+                new DocumentType
+                {
+                    Name="中办发"
+                },
+                new DocumentType
+                {
+                    Name="市办发"
+                }
+            };
+            typeList.ForEach(tl => context.DocumentTypes.AddOrUpdate(dt => dt.Name, tl));
+            context.SaveChanges();
         }
     }
 }

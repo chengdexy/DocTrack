@@ -32,12 +32,12 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.TxtOperationType = new System.Windows.Forms.TextBox();
             this.TxtHandman = new System.Windows.Forms.TextBox();
             this.TxtTarget = new System.Windows.Forms.TextBox();
-            this.TxtHappenTime = new System.Windows.Forms.TextBox();
             this.BtnSave = new System.Windows.Forms.Button();
             this.BtnCancel = new System.Windows.Forms.Button();
+            this.CboOperationType = new System.Windows.Forms.ComboBox();
+            this.DtpHappenTime = new System.Windows.Forms.DateTimePicker();
             this.SuspendLayout();
             // 
             // label1
@@ -76,13 +76,6 @@
             this.label4.TabIndex = 3;
             this.label4.Text = "发生时间:";
             // 
-            // TxtOperationType
-            // 
-            this.TxtOperationType.Location = new System.Drawing.Point(129, 43);
-            this.TxtOperationType.Name = "TxtOperationType";
-            this.TxtOperationType.Size = new System.Drawing.Size(179, 21);
-            this.TxtOperationType.TabIndex = 4;
-            // 
             // TxtHandman
             // 
             this.TxtHandman.Location = new System.Drawing.Point(129, 87);
@@ -96,13 +89,6 @@
             this.TxtTarget.Name = "TxtTarget";
             this.TxtTarget.Size = new System.Drawing.Size(179, 21);
             this.TxtTarget.TabIndex = 6;
-            // 
-            // TxtHappenTime
-            // 
-            this.TxtHappenTime.Location = new System.Drawing.Point(129, 175);
-            this.TxtHappenTime.Name = "TxtHappenTime";
-            this.TxtHappenTime.Size = new System.Drawing.Size(179, 21);
-            this.TxtHappenTime.TabIndex = 7;
             // 
             // BtnSave
             // 
@@ -122,18 +108,41 @@
             this.BtnCancel.TabIndex = 9;
             this.BtnCancel.Text = "关闭";
             this.BtnCancel.UseVisualStyleBackColor = true;
+            this.BtnCancel.Click += new System.EventHandler(this.BtnCancel_Click);
+            // 
+            // CboOperationType
+            // 
+            this.CboOperationType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CboOperationType.FormattingEnabled = true;
+            this.CboOperationType.Items.AddRange(new object[] {
+            "传出",
+            "收回",
+            "归档"});
+            this.CboOperationType.Location = new System.Drawing.Point(129, 43);
+            this.CboOperationType.Name = "CboOperationType";
+            this.CboOperationType.Size = new System.Drawing.Size(179, 20);
+            this.CboOperationType.TabIndex = 10;
+            // 
+            // DtpHappenTime
+            // 
+            this.DtpHappenTime.CustomFormat = "yyyy/MM/dd HH:mm";
+            this.DtpHappenTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.DtpHappenTime.Location = new System.Drawing.Point(129, 172);
+            this.DtpHappenTime.Name = "DtpHappenTime";
+            this.DtpHappenTime.Size = new System.Drawing.Size(179, 21);
+            this.DtpHappenTime.TabIndex = 11;
             // 
             // FrmEditOper
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(401, 318);
+            this.Controls.Add(this.DtpHappenTime);
+            this.Controls.Add(this.CboOperationType);
             this.Controls.Add(this.BtnCancel);
             this.Controls.Add(this.BtnSave);
-            this.Controls.Add(this.TxtHappenTime);
             this.Controls.Add(this.TxtTarget);
             this.Controls.Add(this.TxtHandman);
-            this.Controls.Add(this.TxtOperationType);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -152,11 +161,11 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox TxtOperationType;
         private System.Windows.Forms.TextBox TxtHandman;
         private System.Windows.Forms.TextBox TxtTarget;
-        private System.Windows.Forms.TextBox TxtHappenTime;
         private System.Windows.Forms.Button BtnSave;
         private System.Windows.Forms.Button BtnCancel;
+        private System.Windows.Forms.ComboBox CboOperationType;
+        private System.Windows.Forms.DateTimePicker DtpHappenTime;
     }
 }

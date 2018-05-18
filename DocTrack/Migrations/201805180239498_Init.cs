@@ -41,9 +41,21 @@ namespace DocTrack.Migrations
                         Title = c.String(),
                         SerialNumber = c.String(),
                         SecretLevel = c.Int(nullable: false),
+                        DocumentTypeID = c.Int(nullable: false),
                         Quantity = c.Int(nullable: false),
                         DistributionScope = c.String(),
                         Remark = c.String(),
+                    })
+                .PrimaryKey(t => t.ID)
+                .ForeignKey("dbo.DocumentType", t => t.DocumentTypeID, cascadeDelete: true)
+                .Index(t => t.DocumentTypeID);
+            
+            CreateTable(
+                "dbo.DocumentType",
+                c => new
+                    {
+                        ID = c.Int(nullable: false, identity: true),
+                        Name = c.String(),
                     })
                 .PrimaryKey(t => t.ID);
             
@@ -52,9 +64,12 @@ namespace DocTrack.Migrations
         public override void Down()
         {
             DropForeignKey("dbo.SubDocument", "DocumentID", "dbo.Document");
+            DropForeignKey("dbo.Document", "DocumentTypeID", "dbo.DocumentType");
             DropForeignKey("dbo.CirculationOperation", "SubDocumentID", "dbo.SubDocument");
+            DropIndex("dbo.Document", new[] { "DocumentTypeID" });
             DropIndex("dbo.SubDocument", new[] { "DocumentID" });
             DropIndex("dbo.CirculationOperation", new[] { "SubDocumentID" });
+            DropTable("dbo.DocumentType");
             DropTable("dbo.Document");
             DropTable("dbo.SubDocument");
             DropTable("dbo.CirculationOperation");
