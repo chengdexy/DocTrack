@@ -22,6 +22,20 @@ namespace DocTrack.BLL
             }
             return null;
         }
+        //生产环境中, 如果type表无数据则自动添加数据
+        internal static void CheckDb()
+        {
+            if (Db.DocumentTypes.Count() == 0)
+            {
+                Db.DocumentTypes.Add(
+                    new DocumentType
+                    {
+                        Name="测试"
+                    }
+                    );
+                Db.SaveChanges();
+            }
+        }
 
         //判断数据库中doc表是否为空
         private static bool IsEmpty()

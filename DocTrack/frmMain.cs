@@ -18,6 +18,7 @@ namespace DocTrack
         //构造
         public FrmMain()
         {
+            DocumentControl.CheckDb();
             InitializeComponent();
         }
         //更改布局以适应当前窗体大小
@@ -201,6 +202,10 @@ namespace DocTrack
         //pop菜单项
         private void 删除公文ToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (DgvDocument.SelectedRows.Count == 0)
+            {
+                return;
+            }
             string title = DgvDocument.SelectedRows[0].Cells["colTitle"].Value.ToString();
             int docID = Convert.ToInt32(DgvDocument.SelectedRows[0].Cells["colID"].Value);
             if (MessageBox.Show($"确定删除《{title}》吗?", "删除确认", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
@@ -211,6 +216,10 @@ namespace DocTrack
         }
         private void 修改内容ToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (DgvDocument.SelectedRows.Count == 0)
+            {
+                return;
+            }
             int docID = Convert.ToInt32(DgvDocument.SelectedRows[0].Cells["colID"].Value);
             FrmEditDoc frm = new FrmEditDoc(docID);
             frm.ShowDialog();
@@ -226,6 +235,10 @@ namespace DocTrack
         {
             //新增流转的逻辑是创建一个新的oper对象及其对应的一个sub对象到数据库
             //添加完成后刷新界面,即可获得想要的结果
+            if (DgvDocument.SelectedRows.Count == 0)
+            {
+                return;
+            }
             int docID = Convert.ToInt32(DgvDocument.SelectedRows[0].Cells["colID"].Value);
             DocumentControl.CreateNewSubDoc(docID);
             ShowViews(docID);
@@ -234,6 +247,10 @@ namespace DocTrack
         {
             //Todo:这里先实现功能,不考虑删除的前提条件
             //viewID是一个view的唯一识别,无视其所属的doc
+            if (DgvDocument.SelectedRows.Count == 0 || DgvSubDoc.SelectedRows.Count == 0)
+            {
+                return;
+            }
             int docID = Convert.ToInt32(DgvDocument.SelectedRows[0].Cells["colID"].Value);
             int viewID = Convert.ToInt32(DgvSubDoc.SelectedRows[0].Cells["colViewID"].Value);
             if (MessageBox.Show($"确定删除流转{viewID}吗?", "删除确认", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
@@ -244,6 +261,10 @@ namespace DocTrack
         }
         private void 新增操作ToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (DgvSubDoc.SelectedRows.Count == 0)
+            {
+                return;
+            }
             //只需传递subdoc的id即可
             int viewID = Convert.ToInt32(DgvSubDoc.SelectedRows[0].Cells["colViewID"].Value);
             FrmEditOper frm = new FrmEditOper(viewID);
@@ -253,10 +274,19 @@ namespace DocTrack
 
         private void 删除操作ToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (DgvOper.SelectedRows.Count == 0 || DgvSubDoc.SelectedRows.Count == 0)
+            {
+                return;
+            }
             //依据oper的id直接删除
             int operID = Convert.ToInt32(DgvOper.SelectedRows[0].Cells["colOperID"].Value);
             int viewID = Convert.ToInt32(DgvSubDoc.SelectedRows[0].Cells["colViewID"].Value);
             int operNum = Convert.ToInt32(DgvOper.SelectedRows[0].Cells["colOperNumber"].Value);
+            string hand = DgvOper.SelectedRows[0].Cells["colOperHandman"].Value.ToString();
+            if (hand == "系统")
+            {
+                return;
+            }
             if (MessageBox.Show($"确定删除{operNum}号操作记录吗?", "删除确认", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 DocumentControl.DeleteOperationById(operID);
