@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmEditDoc));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -204,10 +205,6 @@
             this.DtpCheckTime.Size = new System.Drawing.Size(253, 21);
             this.DtpCheckTime.TabIndex = 18;
             // 
-            // documentTypeBindingSource
-            // 
-            this.documentTypeBindingSource.DataSource = typeof(DocTrack.Model.DocumentType);
-            // 
             // NumQuantity
             // 
             this.NumQuantity.Location = new System.Drawing.Point(114, 188);
@@ -238,8 +235,10 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmEditDoc";
-            this.Text = "FrmEditDoc";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "登记新公文";
             this.Load += new System.EventHandler(this.FrmEditDoc_Load);
             ((System.ComponentModel.ISupportInitialize)(this.documentTypeBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NumQuantity)).EndInit();

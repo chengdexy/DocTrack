@@ -30,6 +30,7 @@ namespace DocTrack
 
         private void FrmEditOper_Load(object sender, EventArgs e)
         {
+            this.Text = $"新增操作: 流程-{_id}";
         }
 
         private void BtnSave_Click(object sender, EventArgs e)

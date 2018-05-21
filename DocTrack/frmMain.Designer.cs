@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
             this.MenuStrip = new System.Windows.Forms.MenuStrip();
             this.文件ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.StatusStrip = new System.Windows.Forms.StatusStrip();
@@ -51,24 +52,24 @@
             this.colTarget = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel3 = new System.Windows.Forms.Panel();
             this.DgvOper = new System.Windows.Forms.DataGridView();
-            this.ToolStrip = new System.Windows.Forms.ToolStrip();
-            this.CtxMenuDoc = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.登记公文ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.CtxMenuSub = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.新增流转ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.CtxMenuOper = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.新增操作ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.删除公文ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.修改内容ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.删除流转ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.删除操作ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.colOperID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colOperNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colHappenTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colOperHandman = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colOperTarget = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ToolStrip = new System.Windows.Forms.ToolStrip();
+            this.CtxMenuDoc = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.登记公文ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.删除公文ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.修改内容ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.CtxMenuSub = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.新增流转ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.删除流转ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.CtxMenuOper = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.新增操作ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.删除操作ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuStrip.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvDocument)).BeginInit();
@@ -303,94 +304,6 @@
             this.DgvOper.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DgvOper_CellMouseClick);
             this.DgvOper.MouseClick += new System.Windows.Forms.MouseEventHandler(this.DgvOper_MouseClick);
             // 
-            // ToolStrip
-            // 
-            this.ToolStrip.Location = new System.Drawing.Point(0, 25);
-            this.ToolStrip.Name = "ToolStrip";
-            this.ToolStrip.Size = new System.Drawing.Size(1008, 25);
-            this.ToolStrip.TabIndex = 12;
-            this.ToolStrip.Text = "toolStrip1";
-            // 
-            // CtxMenuDoc
-            // 
-            this.CtxMenuDoc.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.登记公文ToolStripMenuItem,
-            this.toolStripSeparator1,
-            this.删除公文ToolStripMenuItem,
-            this.修改内容ToolStripMenuItem});
-            this.CtxMenuDoc.Name = "CtxMenuDoc";
-            this.CtxMenuDoc.Size = new System.Drawing.Size(125, 76);
-            // 
-            // 登记公文ToolStripMenuItem
-            // 
-            this.登记公文ToolStripMenuItem.Name = "登记公文ToolStripMenuItem";
-            this.登记公文ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.登记公文ToolStripMenuItem.Text = "登记公文";
-            this.登记公文ToolStripMenuItem.Click += new System.EventHandler(this.登记公文ToolStripMenuItem_Click);
-            // 
-            // CtxMenuSub
-            // 
-            this.CtxMenuSub.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.新增流转ToolStripMenuItem,
-            this.删除流转ToolStripMenuItem});
-            this.CtxMenuSub.Name = "CtxMenuSub";
-            this.CtxMenuSub.Size = new System.Drawing.Size(125, 48);
-            // 
-            // 新增流转ToolStripMenuItem
-            // 
-            this.新增流转ToolStripMenuItem.Name = "新增流转ToolStripMenuItem";
-            this.新增流转ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.新增流转ToolStripMenuItem.Text = "新增流转";
-            this.新增流转ToolStripMenuItem.Click += new System.EventHandler(this.新增流转ToolStripMenuItem_Click);
-            // 
-            // CtxMenuOper
-            // 
-            this.CtxMenuOper.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.新增操作ToolStripMenuItem,
-            this.删除操作ToolStripMenuItem});
-            this.CtxMenuOper.Name = "CtxMenuOper";
-            this.CtxMenuOper.Size = new System.Drawing.Size(181, 70);
-            // 
-            // 新增操作ToolStripMenuItem
-            // 
-            this.新增操作ToolStripMenuItem.Name = "新增操作ToolStripMenuItem";
-            this.新增操作ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.新增操作ToolStripMenuItem.Text = "新增操作";
-            this.新增操作ToolStripMenuItem.Click += new System.EventHandler(this.新增操作ToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
-            // 
-            // 删除公文ToolStripMenuItem
-            // 
-            this.删除公文ToolStripMenuItem.Name = "删除公文ToolStripMenuItem";
-            this.删除公文ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.删除公文ToolStripMenuItem.Text = "删除公文";
-            this.删除公文ToolStripMenuItem.Click += new System.EventHandler(this.删除公文ToolStripMenuItem_Click);
-            // 
-            // 修改内容ToolStripMenuItem
-            // 
-            this.修改内容ToolStripMenuItem.Name = "修改内容ToolStripMenuItem";
-            this.修改内容ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.修改内容ToolStripMenuItem.Text = "修改内容";
-            this.修改内容ToolStripMenuItem.Click += new System.EventHandler(this.修改内容ToolStripMenuItem_Click);
-            // 
-            // 删除流转ToolStripMenuItem
-            // 
-            this.删除流转ToolStripMenuItem.Name = "删除流转ToolStripMenuItem";
-            this.删除流转ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.删除流转ToolStripMenuItem.Text = "删除流转";
-            this.删除流转ToolStripMenuItem.Click += new System.EventHandler(this.删除流转ToolStripMenuItem_Click);
-            // 
-            // 删除操作ToolStripMenuItem
-            // 
-            this.删除操作ToolStripMenuItem.Name = "删除操作ToolStripMenuItem";
-            this.删除操作ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.删除操作ToolStripMenuItem.Text = "删除操作";
-            this.删除操作ToolStripMenuItem.Click += new System.EventHandler(this.删除操作ToolStripMenuItem_Click);
-            // 
             // colOperID
             // 
             this.colOperID.HeaderText = "ID";
@@ -428,6 +341,94 @@
             this.colOperTarget.Name = "colOperTarget";
             this.colOperTarget.ReadOnly = true;
             // 
+            // ToolStrip
+            // 
+            this.ToolStrip.Location = new System.Drawing.Point(0, 25);
+            this.ToolStrip.Name = "ToolStrip";
+            this.ToolStrip.Size = new System.Drawing.Size(1008, 25);
+            this.ToolStrip.TabIndex = 12;
+            this.ToolStrip.Text = "toolStrip1";
+            // 
+            // CtxMenuDoc
+            // 
+            this.CtxMenuDoc.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.登记公文ToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.删除公文ToolStripMenuItem,
+            this.修改内容ToolStripMenuItem});
+            this.CtxMenuDoc.Name = "CtxMenuDoc";
+            this.CtxMenuDoc.Size = new System.Drawing.Size(125, 76);
+            // 
+            // 登记公文ToolStripMenuItem
+            // 
+            this.登记公文ToolStripMenuItem.Name = "登记公文ToolStripMenuItem";
+            this.登记公文ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.登记公文ToolStripMenuItem.Text = "登记公文";
+            this.登记公文ToolStripMenuItem.Click += new System.EventHandler(this.登记公文ToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(121, 6);
+            // 
+            // 删除公文ToolStripMenuItem
+            // 
+            this.删除公文ToolStripMenuItem.Name = "删除公文ToolStripMenuItem";
+            this.删除公文ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.删除公文ToolStripMenuItem.Text = "删除公文";
+            this.删除公文ToolStripMenuItem.Click += new System.EventHandler(this.删除公文ToolStripMenuItem_Click);
+            // 
+            // 修改内容ToolStripMenuItem
+            // 
+            this.修改内容ToolStripMenuItem.Name = "修改内容ToolStripMenuItem";
+            this.修改内容ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.修改内容ToolStripMenuItem.Text = "修改内容";
+            this.修改内容ToolStripMenuItem.Click += new System.EventHandler(this.修改内容ToolStripMenuItem_Click);
+            // 
+            // CtxMenuSub
+            // 
+            this.CtxMenuSub.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.新增流转ToolStripMenuItem,
+            this.删除流转ToolStripMenuItem});
+            this.CtxMenuSub.Name = "CtxMenuSub";
+            this.CtxMenuSub.Size = new System.Drawing.Size(125, 48);
+            // 
+            // 新增流转ToolStripMenuItem
+            // 
+            this.新增流转ToolStripMenuItem.Name = "新增流转ToolStripMenuItem";
+            this.新增流转ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.新增流转ToolStripMenuItem.Text = "新增流转";
+            this.新增流转ToolStripMenuItem.Click += new System.EventHandler(this.新增流转ToolStripMenuItem_Click);
+            // 
+            // 删除流转ToolStripMenuItem
+            // 
+            this.删除流转ToolStripMenuItem.Name = "删除流转ToolStripMenuItem";
+            this.删除流转ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.删除流转ToolStripMenuItem.Text = "删除流转";
+            this.删除流转ToolStripMenuItem.Click += new System.EventHandler(this.删除流转ToolStripMenuItem_Click);
+            // 
+            // CtxMenuOper
+            // 
+            this.CtxMenuOper.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.新增操作ToolStripMenuItem,
+            this.删除操作ToolStripMenuItem});
+            this.CtxMenuOper.Name = "CtxMenuOper";
+            this.CtxMenuOper.Size = new System.Drawing.Size(125, 48);
+            // 
+            // 新增操作ToolStripMenuItem
+            // 
+            this.新增操作ToolStripMenuItem.Name = "新增操作ToolStripMenuItem";
+            this.新增操作ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.新增操作ToolStripMenuItem.Text = "新增操作";
+            this.新增操作ToolStripMenuItem.Click += new System.EventHandler(this.新增操作ToolStripMenuItem_Click);
+            // 
+            // 删除操作ToolStripMenuItem
+            // 
+            this.删除操作ToolStripMenuItem.Name = "删除操作ToolStripMenuItem";
+            this.删除操作ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.删除操作ToolStripMenuItem.Text = "删除操作";
+            this.删除操作ToolStripMenuItem.Click += new System.EventHandler(this.删除操作ToolStripMenuItem_Click);
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -439,9 +440,11 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.StatusStrip);
             this.Controls.Add(this.MenuStrip);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.MenuStrip;
             this.Name = "FrmMain";
-            this.Text = "Form1";
+            this.Text = "机要公文流转跟踪 v1.0";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FrmMain_Load);
             this.Resize += new System.EventHandler(this.FrmMain_Resize);
             this.MenuStrip.ResumeLayout(false);
