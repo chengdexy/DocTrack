@@ -8,9 +8,9 @@ namespace DocTrack.Common
 {
     enum SecretLevel
     {
-        None = 0,     //无密级
-        Low = 1,      //秘密
-        Normal = 2,   //机密
-        High = 3      //绝密
+        无密级 = 0,     //无密级
+        秘密级 = 1,      //秘密
+        机密级 = 2,   //机密
+        绝密级 = 3      //绝密
     }
 }

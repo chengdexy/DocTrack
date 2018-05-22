@@ -22,6 +22,25 @@ namespace DocTrack.BLL
             }
             return null;
         }
+        //重载上一个, 提供筛选(模糊匹配文号/标题)
+        internal static List<Document> GetDocuments(string filter)
+        {
+            if (!IsEmpty())
+            {
+                List<Document> all = Db.Documents.ToList();
+                List<Document> result = new List<Document>();
+                all.ForEach(doc =>
+                {
+                    if (doc.SerialNumber.IndexOf(filter) != -1 || doc.Title.IndexOf(filter) != -1)
+                    {
+                        //模糊匹配文号或标题
+                        result.Add(doc);
+                    }
+                });
+                return result;
+            }
+            return null;
+        }
         //生产环境中, 如果type表无数据则自动添加数据
         internal static void CheckDb()
         {
@@ -30,7 +49,7 @@ namespace DocTrack.BLL
                 Db.DocumentTypes.Add(
                     new DocumentType
                     {
-                        Name="测试"
+                        Name = "测试"
                     }
                     );
                 Db.SaveChanges();
@@ -144,7 +163,7 @@ namespace DocTrack.BLL
                 {
                     new CirculationOperation
                     {
-                        OperationType=Common.OperationType.New,
+                        OperationType=Common.OperationType.未开始,
                         HandmanName="系统",
                         TargetName="系统",
                         HappenTime=DateTime.Now

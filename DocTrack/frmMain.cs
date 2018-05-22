@@ -43,11 +43,11 @@ namespace DocTrack
         {
             //嵌套调用 ShowDocs()=>ShowViews()=>ShowOpers()
             //展示已存的数据
-            ShowDocs();
+            ShowDocs("");
         }
-        private void ShowDocs()
+        private void ShowDocs(string filter)
         {
-            var docList = DocumentControl.GetDocuments();
+            var docList = string.IsNullOrEmpty(filter) ? DocumentControl.GetDocuments() : DocumentControl.GetDocuments(filter);
             DgvDocument.Rows.Clear();
             if (docList != null && docList.Count > 0)
             {
@@ -71,13 +71,35 @@ namespace DocTrack
             {
                 viewList.ForEach(view =>
                     {
-                        DgvSubDoc.Rows.Add(
+                        int rowID = DgvSubDoc.Rows.Add(
                             view.ID,
                             view.LastOperTime,
                             view.HandmanName,
                             view.OperationType,
                             view.TargetName
                             );
+                        switch (view.OperationType)
+                        {
+                            case Common.OperationType.传出至:
+                                DgvSubDoc.Rows[rowID].Cells["colViewID"].Style.BackColor = Color.Yellow;
+                                DgvSubDoc.Rows[rowID].Cells["colViewID"].Style.SelectionBackColor = Color.Yellow;
+                                DgvSubDoc.Rows[rowID].Cells["colViewID"].Style.SelectionForeColor = Color.Black;
+                                break;
+                            case Common.OperationType.收回自:
+                                DgvSubDoc.Rows[rowID].Cells["colViewID"].Style.BackColor = Color.LightPink;
+                                DgvSubDoc.Rows[rowID].Cells["colViewID"].Style.SelectionForeColor = Color.Black;
+                                DgvSubDoc.Rows[rowID].Cells["colViewID"].Style.SelectionBackColor = Color.LightPink;
+                                break;
+                            case Common.OperationType.已归档:
+                                DgvSubDoc.Rows[rowID].Cells["colViewID"].Style.BackColor = Color.LightGreen;
+                                DgvSubDoc.Rows[rowID].Cells["colViewID"].Style.SelectionForeColor = Color.Black;
+                                DgvSubDoc.Rows[rowID].Cells["colViewID"].Style.SelectionBackColor = Color.LightGreen;
+                                break;
+                            case Common.OperationType.未开始:
+                                break;
+                            default:
+                                break;
+                        }
                     });
                 DgvSubDoc.Rows[0].Selected = true;
                 int viewID = Convert.ToInt32(DgvSubDoc.Rows[0].Cells["colViewID"].Value);
@@ -98,6 +120,7 @@ namespace DocTrack
                 operList.ForEach(oper =>
                 {
                     DgvOper.Rows.Add(oper.ID, i, oper.HappenTime, oper.HandmanName, oper.OperationType, oper.TargetName);
+                    i++;
                 });
                 DgvOper.Rows[0].Selected = true;
             }
@@ -271,7 +294,6 @@ namespace DocTrack
             frm.ShowDialog();
             ShowOpers(viewID);
         }
-
         private void 删除操作ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (DgvOper.SelectedRows.Count == 0 || DgvSubDoc.SelectedRows.Count == 0)
@@ -291,6 +313,18 @@ namespace DocTrack
             {
                 DocumentControl.DeleteOperationById(operID);
                 ShowOpers(viewID);
+            }
+        }
+        private void TsTxtSearch_Enter(object sender, EventArgs e)
+        {
+            TsTxtSearch.Text = "";
+        }
+        private void TsTxtSearch_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                ShowDocs(TsTxtSearch.Text);
+                DgvDocument.Focus();
             }
         }
     }

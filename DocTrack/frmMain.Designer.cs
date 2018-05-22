@@ -59,6 +59,8 @@
             this.colType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colOperTarget = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ToolStrip = new System.Windows.Forms.ToolStrip();
+            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+            this.TsTxtSearch = new System.Windows.Forms.ToolStripTextBox();
             this.CtxMenuDoc = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.登记公文ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -77,6 +79,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.DgvSubDoc)).BeginInit();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvOper)).BeginInit();
+            this.ToolStrip.SuspendLayout();
             this.CtxMenuDoc.SuspendLayout();
             this.CtxMenuSub.SuspendLayout();
             this.CtxMenuOper.SuspendLayout();
@@ -141,7 +144,8 @@
             this.DgvDocument.Name = "DgvDocument";
             this.DgvDocument.ReadOnly = true;
             this.DgvDocument.RowHeadersVisible = false;
-            this.DgvDocument.RowTemplate.Height = 23;
+            this.DgvDocument.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.DgvDocument.RowTemplate.Height = 30;
             this.DgvDocument.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DgvDocument.Size = new System.Drawing.Size(194, 94);
             this.DgvDocument.TabIndex = 1;
@@ -228,7 +232,8 @@
             this.DgvSubDoc.Name = "DgvSubDoc";
             this.DgvSubDoc.ReadOnly = true;
             this.DgvSubDoc.RowHeadersVisible = false;
-            this.DgvSubDoc.RowTemplate.Height = 23;
+            this.DgvSubDoc.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.DgvSubDoc.RowTemplate.Height = 30;
             this.DgvSubDoc.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DgvSubDoc.Size = new System.Drawing.Size(197, 94);
             this.DgvSubDoc.TabIndex = 2;
@@ -297,7 +302,8 @@
             this.DgvOper.Name = "DgvOper";
             this.DgvOper.ReadOnly = true;
             this.DgvOper.RowHeadersVisible = false;
-            this.DgvOper.RowTemplate.Height = 23;
+            this.DgvOper.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.DgvOper.RowTemplate.Height = 30;
             this.DgvOper.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DgvOper.Size = new System.Drawing.Size(197, 94);
             this.DgvOper.TabIndex = 2;
@@ -343,11 +349,28 @@
             // 
             // ToolStrip
             // 
+            this.ToolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.ToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripLabel1,
+            this.TsTxtSearch});
             this.ToolStrip.Location = new System.Drawing.Point(0, 25);
             this.ToolStrip.Name = "ToolStrip";
             this.ToolStrip.Size = new System.Drawing.Size(1008, 25);
             this.ToolStrip.TabIndex = 12;
             this.ToolStrip.Text = "toolStrip1";
+            // 
+            // toolStripLabel1
+            // 
+            this.toolStripLabel1.Name = "toolStripLabel1";
+            this.toolStripLabel1.Size = new System.Drawing.Size(39, 22);
+            this.toolStripLabel1.Text = "筛选: ";
+            // 
+            // TsTxtSearch
+            // 
+            this.TsTxtSearch.Name = "TsTxtSearch";
+            this.TsTxtSearch.Size = new System.Drawing.Size(200, 25);
+            this.TsTxtSearch.Enter += new System.EventHandler(this.TsTxtSearch_Enter);
+            this.TsTxtSearch.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TsTxtSearch_KeyUp);
             // 
             // CtxMenuDoc
             // 
@@ -455,6 +478,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.DgvSubDoc)).EndInit();
             this.panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.DgvOper)).EndInit();
+            this.ToolStrip.ResumeLayout(false);
+            this.ToolStrip.PerformLayout();
             this.CtxMenuDoc.ResumeLayout(false);
             this.CtxMenuSub.ResumeLayout(false);
             this.CtxMenuOper.ResumeLayout(false);
@@ -504,6 +529,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colOperHandman;
         private System.Windows.Forms.DataGridViewTextBoxColumn colType;
         private System.Windows.Forms.DataGridViewTextBoxColumn colOperTarget;
+        private System.Windows.Forms.ToolStripTextBox TsTxtSearch;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel1;
     }
 }
 
