@@ -31,7 +31,7 @@ namespace DocTrack.BLL
                 List<Document> result = new List<Document>();
                 all.ForEach(doc =>
                 {
-                    if (doc.SerialNumber.IndexOf(filter) != -1 || doc.Title.IndexOf(filter) != -1)
+                    if (doc.SerialNumber.IndexOf(filter) != -1 || doc.Title.IndexOf(filter) != -1 || doc.ISN.IndexOf(filter) != -1)
                     {
                         //模糊匹配文号或标题
                         result.Add(doc);
@@ -41,6 +41,21 @@ namespace DocTrack.BLL
             }
             return null;
         }
+        //判断一个type是否正在使用中
+        internal static bool CheckTypeUsing(int id)
+        {
+            var result = Db.Documents.FirstOrDefault(doc => doc.DocumentTypeID == id);
+            return result != null;
+        }
+
+        //根据id删除指定的document type
+        internal static void DeleteDocType(int id)
+        {
+            var type = Db.DocumentTypes.Find(id);
+            Db.DocumentTypes.Remove(type);
+            Db.SaveChanges();
+        }
+
         //生产环境中, 如果type表无数据则自动添加数据
         internal static void CheckDb()
         {
@@ -49,7 +64,7 @@ namespace DocTrack.BLL
                 Db.DocumentTypes.Add(
                     new DocumentType
                     {
-                        Name = "测试"
+                        Name = "其他"
                     }
                     );
                 Db.SaveChanges();
@@ -80,6 +95,22 @@ namespace DocTrack.BLL
                     .ToList();
             }
             return null;
+        }
+        //检查是否已经有名为name的文件类型,如果有返回这个类型实例,如没有先添加这个类型,再返回其实例
+        internal static DocumentType AddOrGetType(string name)
+        {
+            if (Db.DocumentTypes.FirstOrDefault(t => t.Name == name) == null)
+            {
+                //不包含,先添加
+                DocumentType type = new DocumentType
+                {
+                    Name = name
+                };
+                Db.DocumentTypes.Add(type);
+                Db.SaveChanges();
+            }
+            //至此已包含,返回其实例
+            return Db.DocumentTypes.FirstOrDefault(t => t.Name == name);
         }
 
         //获取指定id的doc, 并同时包含其子集

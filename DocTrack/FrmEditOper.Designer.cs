@@ -86,7 +86,7 @@
             // TxtHandman
             // 
             this.TxtHandman.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.TxtHandman.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.TxtHandman.ImeMode = System.Windows.Forms.ImeMode.HangulFull;
             this.TxtHandman.Location = new System.Drawing.Point(129, 87);
             this.TxtHandman.Name = "TxtHandman";
             this.TxtHandman.Size = new System.Drawing.Size(179, 26);
@@ -95,7 +95,7 @@
             // TxtTarget
             // 
             this.TxtTarget.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.TxtTarget.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.TxtTarget.ImeMode = System.Windows.Forms.ImeMode.HangulFull;
             this.TxtTarget.Location = new System.Drawing.Point(129, 131);
             this.TxtTarget.Name = "TxtTarget";
             this.TxtTarget.Size = new System.Drawing.Size(179, 26);
@@ -166,7 +166,7 @@
             // TxtRemark
             // 
             this.TxtRemark.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.TxtRemark.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.TxtRemark.ImeMode = System.Windows.Forms.ImeMode.HangulFull;
             this.TxtRemark.Location = new System.Drawing.Point(129, 221);
             this.TxtRemark.Multiline = true;
             this.TxtRemark.Name = "TxtRemark";

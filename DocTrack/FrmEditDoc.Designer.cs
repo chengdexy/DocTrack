@@ -51,6 +51,7 @@
             this.TxtISN = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.documentTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.BtnTypeSetting = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.NumQuantity)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.documentTypeBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -118,7 +119,6 @@
             // TxtTitle
             // 
             this.TxtTitle.Font = new System.Drawing.Font("微软雅黑", 10.5F);
-            this.TxtTitle.ImeMode = System.Windows.Forms.ImeMode.On;
             this.TxtTitle.Location = new System.Drawing.Point(114, 57);
             this.TxtTitle.Name = "TxtTitle";
             this.TxtTitle.Size = new System.Drawing.Size(253, 26);
@@ -127,7 +127,7 @@
             // TxtSerialNum
             // 
             this.TxtSerialNum.Font = new System.Drawing.Font("微软雅黑", 10.5F);
-            this.TxtSerialNum.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.TxtSerialNum.ImeMode = System.Windows.Forms.ImeMode.HangulFull;
             this.TxtSerialNum.Location = new System.Drawing.Point(114, 90);
             this.TxtSerialNum.Name = "TxtSerialNum";
             this.TxtSerialNum.Size = new System.Drawing.Size(253, 26);
@@ -136,7 +136,7 @@
             // TxtDistributionScope
             // 
             this.TxtDistributionScope.Font = new System.Drawing.Font("微软雅黑", 10.5F);
-            this.TxtDistributionScope.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.TxtDistributionScope.ImeMode = System.Windows.Forms.ImeMode.HangulFull;
             this.TxtDistributionScope.Location = new System.Drawing.Point(114, 255);
             this.TxtDistributionScope.Name = "TxtDistributionScope";
             this.TxtDistributionScope.Size = new System.Drawing.Size(253, 26);
@@ -145,7 +145,7 @@
             // TxtRemark
             // 
             this.TxtRemark.Font = new System.Drawing.Font("微软雅黑", 10.5F);
-            this.TxtRemark.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.TxtRemark.ImeMode = System.Windows.Forms.ImeMode.HangulFull;
             this.TxtRemark.Location = new System.Drawing.Point(114, 288);
             this.TxtRemark.Name = "TxtRemark";
             this.TxtRemark.Size = new System.Drawing.Size(253, 26);
@@ -180,7 +180,6 @@
             // 
             // CboDocumentType
             // 
-            this.CboDocumentType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CboDocumentType.Font = new System.Drawing.Font("微软雅黑", 10.5F);
             this.CboDocumentType.FormattingEnabled = true;
             this.CboDocumentType.Location = new System.Drawing.Point(114, 158);
@@ -262,6 +261,16 @@
             this.label9.TabIndex = 20;
             this.label9.Text = "机传号:";
             // 
+            // BtnTypeSetting
+            // 
+            this.BtnTypeSetting.Image = ((System.Drawing.Image)(resources.GetObject("BtnTypeSetting.Image")));
+            this.BtnTypeSetting.Location = new System.Drawing.Point(369, 160);
+            this.BtnTypeSetting.Name = "BtnTypeSetting";
+            this.BtnTypeSetting.Size = new System.Drawing.Size(24, 24);
+            this.BtnTypeSetting.TabIndex = 21;
+            this.BtnTypeSetting.UseVisualStyleBackColor = true;
+            this.BtnTypeSetting.Click += new System.EventHandler(this.BtnTypeSetting_Click);
+            // 
             // FrmEditDoc
             // 
             this.AcceptButton = this.BtnSave;
@@ -269,6 +278,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.BtnCancel;
             this.ClientSize = new System.Drawing.Size(439, 412);
+            this.Controls.Add(this.BtnTypeSetting);
             this.Controls.Add(this.TxtISN);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.NumQuantity);
@@ -324,5 +334,6 @@
         private System.Windows.Forms.NumericUpDown NumQuantity;
         private System.Windows.Forms.TextBox TxtISN;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Button BtnTypeSetting;
     }
 }

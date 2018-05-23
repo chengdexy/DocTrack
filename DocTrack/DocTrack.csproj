@@ -21,8 +21,8 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>11</ApplicationRevision>
-    <ApplicationVersion>1.1.0.%2a</ApplicationVersion>
+    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationVersion>1.2.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
@@ -106,6 +106,12 @@
     <Compile Include="FrmMain.Designer.cs">
       <DependentUpon>FrmMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmType.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmType.Designer.cs">
+      <DependentUpon>FrmType.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\201805180239498_Init.cs" />
     <Compile Include="Migrations\201805180239498_Init.Designer.cs">
       <DependentUpon>201805180239498_Init.cs</DependentUpon>
@@ -138,6 +144,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmMain.resx">
       <DependentUpon>FrmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmType.resx">
+      <DependentUpon>FrmType.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805180239498_Init.resx">
       <DependentUpon>201805180239498_Init.cs</DependentUpon>

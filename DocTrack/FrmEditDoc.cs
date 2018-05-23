@@ -30,9 +30,14 @@ namespace DocTrack
 
         private void FrmEditDoc_Load(object sender, EventArgs e)
         {
+            //IME设定
+            TxtTitle.ImeMode = ImeMode.OnHalf;
+            TxtSerialNum.ImeMode = ImeMode.OnHalf;
+            CboDocumentType.ImeMode = ImeMode.OnHalf;
+            TxtDistributionScope.ImeMode = ImeMode.OnHalf;
+            TxtRemark.ImeMode = ImeMode.OnHalf;
             //初始化文件类型下拉框
-            CboDocumentType.DataSource = DocumentControl.GetDocTypeList();
-            CboDocumentType.DisplayMember = "Name";
+            SetupTypeList();
             //编辑模式填充数据
             if (_id != 0)
             {
@@ -45,7 +50,14 @@ namespace DocTrack
                 TxtRemark.Text = doc.Remark;
                 CboDocumentType.SelectedItem = doc.DocumentType;
                 DtpCheckTime.Value = doc.CheckTime;
+                TxtISN.Text = doc.ISN;
             }
+        }
+
+        private void SetupTypeList()
+        {
+            CboDocumentType.DataSource = DocumentControl.GetDocTypeList();
+            CboDocumentType.DisplayMember = "Name";
         }
 
         private void BtnSave_Click(object sender, EventArgs e)
@@ -60,7 +72,7 @@ namespace DocTrack
                     Quantity = Convert.ToInt32(NumQuantity.Value),
                     DistributionScope = TxtDistributionScope.Text.Trim(),
                     Remark = TxtRemark.Text.Trim(),
-                    DocumentType = (DocumentType)CboDocumentType.SelectedItem,
+                    DocumentType = DocumentControl.AddOrGetType(CboDocumentType.Text.Trim()),
                     SecretLevel = (SecretLevel)Enum.Parse(typeof(SecretLevel), CboSecretLevel.SelectedIndex.ToString()),
                     CheckTime = DtpCheckTime.Value,
                     ISN = TxtISN.Text.Trim()
@@ -84,7 +96,7 @@ namespace DocTrack
         {
             if (string.IsNullOrEmpty(CboDocumentType.Text))
             {
-                MessageBox.Show("请选择文件类型", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("请选择或输入文件类型", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 CboDocumentType.Focus();
                 return false;
             }
@@ -100,10 +112,18 @@ namespace DocTrack
                 TxtTitle.Focus();
                 return false;
             }
-            if (string.IsNullOrEmpty(TxtSerialNum.Text))
+            if (string.IsNullOrEmpty(TxtSerialNum.Text) && string.IsNullOrEmpty(TxtISN.Text))
             {
-                MessageBox.Show("请输入文号或电报号", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                TxtSerialNum.Focus();
+                //文号或机号至少要填写一个
+                MessageBox.Show("文号或机号至少要填写一个", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                if (string.IsNullOrEmpty(TxtISN.Text))
+                {
+                    TxtISN.Focus();
+                }
+                else
+                {
+                    TxtSerialNum.Focus();
+                }
                 return false;
             }
             if (NumQuantity.Value <= 0)
@@ -118,6 +138,13 @@ namespace DocTrack
         private void BtnCancel_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void BtnTypeSetting_Click(object sender, EventArgs e)
+        {
+            var frm = new FrmType();
+            frm.ShowDialog();
+            SetupTypeList();
         }
     }
 }
