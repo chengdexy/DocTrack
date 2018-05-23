@@ -24,28 +24,39 @@ namespace DocTrack
         //更改布局以适应当前窗体大小
         private void FormatGroups()
         {
-            int solidHeight = ToolStrip.Height + MenuStrip.Height;  //菜单栏加工具栏的高
-            panel1.Width = ClientRectangle.Width / 2;
-            panel1.Left = 0;
-            panel1.Top = solidHeight;
-            panel1.Height = ClientRectangle.Height - solidHeight;
-            panel2.Width = ClientRectangle.Width / 2;
-            panel2.Height = panel1.Height / 2;
-            panel2.Top = panel1.Top;
-            panel2.Left = panel1.Left + panel1.Width;
-            panel3.Width = ClientRectangle.Width / 2;
+            //int solidHeight = MenuStrip.Height;  //菜单栏加工具栏的高
+            //panel1.Width = ClientRectangle.Width / 2;
+            //panel1.Left = 0;
+            //panel1.Top = solidHeight;
+            //panel1.Height = ClientRectangle.Height - solidHeight;
+            //panel2.Width = ClientRectangle.Width / 2;
+            //panel2.Height = panel1.Height / 2;
+            //panel2.Top = panel1.Top;
+            //panel2.Left = panel1.Left + panel1.Width;
+            //panel3.Width = ClientRectangle.Width / 2;
+            //panel3.Height = panel2.Height;
+            //panel3.Top = panel2.Top + panel2.Height;
+            //panel3.Left = panel2.Left;
+            flowLayoutPanel3.Width = flowLayoutPanel1.Width;
+            flowLayoutPanel3.Height = flowLayoutPanel1.Height - flowLayoutPanel2.Height;
+            panel1.Width = flowLayoutPanel3.Width / 2;
+            panel1.Height = flowLayoutPanel3.Height;
+            flowLayoutPanel4.Width = panel1.Width;
+            flowLayoutPanel4.Height = panel1.Height;
+            panel2.Width = flowLayoutPanel4.Width;
+            panel2.Height = flowLayoutPanel4.Height / 2;
+            panel3.Width = panel2.Width;
             panel3.Height = panel2.Height;
-            panel3.Top = panel2.Top + panel2.Height;
-            panel3.Left = panel2.Left;
         }
         //向DataGridView填充数据
         private void PopulateDataGridView()
         {
             //嵌套调用 ShowDocs()=>ShowViews()=>ShowOpers()
             //展示已存的数据
-            ShowDocs("");
+            TxtSearch.Text = "";
+            ShowDocs("", 0, 0, 0);
         }
-        private void ShowDocs(string filter)
+        private void ShowDocs(string filter, int slcDocID, int slcSubID, int slcOperID)
         {
             var docList = string.IsNullOrEmpty(filter) ? DocumentControl.GetDocuments() : DocumentControl.GetDocuments(filter);
             DgvDocument.Rows.Clear();
@@ -57,12 +68,12 @@ namespace DocTrack
                     DgvDocument.Rows.Add(doc.ID, i, doc.Title, doc.SerialNumber, doc.SecretLevel, doc.Quantity, doc.DistributionScope, doc.Remark);
                     i++;
                 });
-                DgvDocument.Rows[0].Selected = true;
-                int docID = Convert.ToInt32(DgvDocument.Rows[0].Cells["colID"].Value);
-                ShowViews(docID);
+                DgvDocument.Rows[slcDocID].Selected = true;
+                int docID = Convert.ToInt32(DgvDocument.SelectedRows[0].Cells["colID"].Value);
+                ShowViews(docID, slcSubID, slcOperID);
             }
         }
-        private void ShowViews(int docID)
+        private void ShowViews(int docID, int slcSubID, int slcOperID)
         {
             var doc = DocumentControl.GetDocumentWithDetails(docID);
             var viewList = ViewFactory.DocToViews(doc);
@@ -101,16 +112,16 @@ namespace DocTrack
                                 break;
                         }
                     });
-                DgvSubDoc.Rows[0].Selected = true;
-                int viewID = Convert.ToInt32(DgvSubDoc.Rows[0].Cells["colViewID"].Value);
-                ShowOpers(viewID);
+                DgvSubDoc.Rows[slcSubID].Selected = true;
+                int viewID = Convert.ToInt32(DgvSubDoc.SelectedRows[0].Cells["colViewID"].Value);
+                ShowOpers(viewID, slcOperID);
             }
             else
             {
-                ShowOpers(0);
+                ShowOpers(0, slcOperID);
             }
         }
-        private void ShowOpers(int viewID)
+        private void ShowOpers(int viewID, int slcOperID)
         {
             var operList = DocumentControl.GetOperBySubID(viewID);
             DgvOper.Rows.Clear();
@@ -122,7 +133,7 @@ namespace DocTrack
                     DgvOper.Rows.Add(oper.ID, i, oper.HappenTime, oper.HandmanName, oper.OperationType, oper.TargetName);
                     i++;
                 });
-                DgvOper.Rows[0].Selected = true;
+                DgvOper.Rows[slcOperID].Selected = true;
             }
         }
         //Load事件
@@ -156,7 +167,7 @@ namespace DocTrack
                 if (e.Button == MouseButtons.Left)    //点击左键
                 {
                     int docID = Convert.ToInt32(DgvDocument.SelectedRows[0].Cells["colID"].Value);
-                    ShowViews(docID);
+                    ShowViews(docID,0,0);
                 }
                 else if (e.Button == MouseButtons.Right)  //点击右键
                 {
@@ -183,7 +194,7 @@ namespace DocTrack
                 if (e.Button == MouseButtons.Left)
                 {
                     int viewID = Convert.ToInt32(DgvSubDoc.SelectedRows[0].Cells["colViewID"].Value);
-                    ShowOpers(viewID);
+                    ShowOpers(viewID,0);
                 }
                 else if (e.Button == MouseButtons.Right)
                 {
@@ -252,7 +263,7 @@ namespace DocTrack
         {
             FrmEditDoc frm = new FrmEditDoc();
             frm.ShowDialog();
-            PopulateDataGridView();
+            ShowDocs("",DgvDocument.RowCount,0,0);
         }
         private void 新增流转ToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -264,7 +275,7 @@ namespace DocTrack
             }
             int docID = Convert.ToInt32(DgvDocument.SelectedRows[0].Cells["colID"].Value);
             DocumentControl.CreateNewSubDoc(docID);
-            ShowViews(docID);
+            ShowDocs("",DgvDocument.SelectedRows[0].Index,DgvSubDoc.RowCount,0);
         }
         private void 删除流转ToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -280,7 +291,7 @@ namespace DocTrack
             {
                 DocumentControl.DeleteSubDocById(viewID);
             }
-            ShowViews(docID);
+            ShowViews(docID,0,0);
         }
         private void 新增操作ToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -292,7 +303,8 @@ namespace DocTrack
             int viewID = Convert.ToInt32(DgvSubDoc.SelectedRows[0].Cells["colViewID"].Value);
             FrmEditOper frm = new FrmEditOper(viewID);
             frm.ShowDialog();
-            ShowOpers(viewID);
+            ShowDocs("", DgvDocument.SelectedRows[0].Index, DgvSubDoc.SelectedRows[0].Index, DgvOper.RowCount );
+            //PopulateDataGridView();
         }
         private void 删除操作ToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -312,20 +324,21 @@ namespace DocTrack
             if (MessageBox.Show($"确定删除{operNum}号操作记录吗?", "删除确认", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 DocumentControl.DeleteOperationById(operID);
-                ShowOpers(viewID);
+                ShowDocs("", DgvDocument.SelectedRows[0].Index, DgvSubDoc.SelectedRows[0].Index, 0);
+                //PopulateDataGridView();
             }
         }
-        private void TsTxtSearch_Enter(object sender, EventArgs e)
-        {
-            TsTxtSearch.Text = "";
-        }
-        private void TsTxtSearch_KeyUp(object sender, KeyEventArgs e)
+        private void TxtSearch_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
-                ShowDocs(TsTxtSearch.Text);
+                ShowDocs(TxtSearch.Text, 0, 0, 0);
                 DgvDocument.Focus();
             }
+        }
+        private void TxtSearch_Enter(object sender, EventArgs e)
+        {
+            PopulateDataGridView();
         }
     }
 }
