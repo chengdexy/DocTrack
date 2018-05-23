@@ -65,7 +65,7 @@ namespace DocTrack
                 int i = 1;
                 docList.ForEach(doc =>
                 {
-                    DgvDocument.Rows.Add(doc.ID, i, doc.Title, doc.SerialNumber, doc.CheckTime, doc.DocumentType.Name, doc.SecretLevel, doc.Quantity, doc.DistributionScope, doc.Remark);
+                    DgvDocument.Rows.Add(doc.ID, i, doc.Title, doc.SerialNumber, doc.ISN, doc.CheckTime, doc.DocumentType.Name, doc.SecretLevel, doc.Quantity, doc.DistributionScope, doc.Remark);
                     i++;
                 });
                 if (slcDocID < DgvDocument.RowCount)
@@ -263,7 +263,12 @@ namespace DocTrack
             int docID = Convert.ToInt32(DgvDocument.SelectedRows[0].Cells["colID"].Value);
             FrmEditDoc frm = new FrmEditDoc(docID);
             frm.ShowDialog();
-            PopulateDataGridView();
+            ShowDocs(
+                "", 
+                DgvDocument.SelectedRows[0].Index, 
+                DgvSubDoc.RowCount > 0 ? DgvSubDoc.SelectedRows[0].Index : 0, 
+                DgvOper.RowCount > 0 ? DgvOper.SelectedRows[0].Index : 0
+                );
         }
         private void 登记公文ToolStripMenuItem_Click(object sender, EventArgs e)
         {

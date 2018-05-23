@@ -32,7 +32,8 @@ namespace DocTrack.Model
         public string DistributionScope { get; set; }
         //备注
         public string Remark { get; set; }
-
+        //机传号 (2018年5月23日 刘燕提出)
+        public string ISN { get; set; }
         //relationship
         public virtual ICollection<SubDocument> SubDocuments { get; set; }
     }

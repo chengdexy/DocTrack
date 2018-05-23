@@ -27,7 +27,7 @@ namespace DocTrack.BLL
         {
             if (!IsEmpty())
             {
-                List<Document> all = Db.Documents.Include(d=>d.DocumentType).ToList();
+                List<Document> all = Db.Documents.Include(d => d.DocumentType).ToList();
                 List<Document> result = new List<Document>();
                 all.ForEach(doc =>
                 {
@@ -130,8 +130,17 @@ namespace DocTrack.BLL
         internal static void UpdateDocument(Document newDoc)
         {
             int id = newDoc.ID;
-            AddNewDocument(newDoc);
-            DeleteDocument(id);
+            var doc = Db.Documents.Include(d => d.DocumentType).FirstOrDefault(d => d.ID == id);
+            doc.CheckTime = newDoc.CheckTime;
+            doc.DistributionScope = newDoc.DistributionScope;
+            doc.DocumentType = Db.DocumentTypes.Find(newDoc.DocumentType.ID);
+            doc.ISN = newDoc.ISN;
+            doc.Quantity = newDoc.Quantity;
+            doc.Remark = newDoc.Remark;
+            doc.SecretLevel = newDoc.SecretLevel;
+            doc.SerialNumber = newDoc.SerialNumber;
+            doc.Title = newDoc.Title;
+            Db.SaveChanges();
         }
 
         //删除指定id的doc

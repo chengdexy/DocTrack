@@ -62,7 +62,8 @@ namespace DocTrack
                     Remark = TxtRemark.Text.Trim(),
                     DocumentType = (DocumentType)CboDocumentType.SelectedItem,
                     SecretLevel = (SecretLevel)Enum.Parse(typeof(SecretLevel), CboSecretLevel.SelectedIndex.ToString()),
-                    CheckTime = DtpCheckTime.Value
+                    CheckTime = DtpCheckTime.Value,
+                    ISN = TxtISN.Text.Trim()
                 };
                 if (_id == 0)
                 {

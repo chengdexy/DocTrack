@@ -21,7 +21,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>8</ApplicationRevision>
+    <ApplicationRevision>10</ApplicationRevision>
     <ApplicationVersion>1.1.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -118,6 +118,10 @@
     <Compile Include="Migrations\201805230220019_Init_3.Designer.cs">
       <DependentUpon>201805230220019_Init_3.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805230406191_Init_4.cs" />
+    <Compile Include="Migrations\201805230406191_Init_4.Designer.cs">
+      <DependentUpon>201805230406191_Init_4.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\CirculationOperation.cs" />
     <Compile Include="Model\Document.cs" />
@@ -143,6 +147,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805230220019_Init_3.resx">
       <DependentUpon>201805230220019_Init_3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805230406191_Init_4.resx">
+      <DependentUpon>201805230406191_Init_4.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

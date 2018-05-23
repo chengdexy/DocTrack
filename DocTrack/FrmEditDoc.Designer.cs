@@ -47,10 +47,12 @@
             this.CboSecretLevel = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.DtpCheckTime = new System.Windows.Forms.DateTimePicker();
-            this.documentTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.NumQuantity = new System.Windows.Forms.NumericUpDown();
-            ((System.ComponentModel.ISupportInitialize)(this.documentTypeBindingSource)).BeginInit();
+            this.TxtISN = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.documentTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.NumQuantity)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.documentTypeBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -77,7 +79,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("微软雅黑", 10.5F);
-            this.label3.Location = new System.Drawing.Point(68, 156);
+            this.label3.Location = new System.Drawing.Point(68, 191);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(40, 20);
             this.label3.TabIndex = 2;
@@ -87,7 +89,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("微软雅黑", 10.5F);
-            this.label4.Location = new System.Drawing.Point(44, 189);
+            this.label4.Location = new System.Drawing.Point(44, 224);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(68, 20);
             this.label4.TabIndex = 3;
@@ -97,7 +99,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("微软雅黑", 10.5F);
-            this.label5.Location = new System.Drawing.Point(44, 222);
+            this.label5.Location = new System.Drawing.Point(44, 257);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(68, 20);
             this.label5.TabIndex = 4;
@@ -107,7 +109,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("微软雅黑", 10.5F);
-            this.label6.Location = new System.Drawing.Point(68, 255);
+            this.label6.Location = new System.Drawing.Point(68, 290);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(40, 20);
             this.label6.TabIndex = 5;
@@ -116,43 +118,47 @@
             // TxtTitle
             // 
             this.TxtTitle.Font = new System.Drawing.Font("微软雅黑", 10.5F);
+            this.TxtTitle.ImeMode = System.Windows.Forms.ImeMode.On;
             this.TxtTitle.Location = new System.Drawing.Point(114, 57);
             this.TxtTitle.Name = "TxtTitle";
             this.TxtTitle.Size = new System.Drawing.Size(253, 26);
-            this.TxtTitle.TabIndex = 6;
+            this.TxtTitle.TabIndex = 1;
             // 
             // TxtSerialNum
             // 
             this.TxtSerialNum.Font = new System.Drawing.Font("微软雅黑", 10.5F);
+            this.TxtSerialNum.ImeMode = System.Windows.Forms.ImeMode.On;
             this.TxtSerialNum.Location = new System.Drawing.Point(114, 90);
             this.TxtSerialNum.Name = "TxtSerialNum";
             this.TxtSerialNum.Size = new System.Drawing.Size(253, 26);
-            this.TxtSerialNum.TabIndex = 7;
+            this.TxtSerialNum.TabIndex = 2;
             // 
             // TxtDistributionScope
             // 
             this.TxtDistributionScope.Font = new System.Drawing.Font("微软雅黑", 10.5F);
-            this.TxtDistributionScope.Location = new System.Drawing.Point(114, 220);
+            this.TxtDistributionScope.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.TxtDistributionScope.Location = new System.Drawing.Point(114, 255);
             this.TxtDistributionScope.Name = "TxtDistributionScope";
             this.TxtDistributionScope.Size = new System.Drawing.Size(253, 26);
-            this.TxtDistributionScope.TabIndex = 10;
+            this.TxtDistributionScope.TabIndex = 7;
             // 
             // TxtRemark
             // 
             this.TxtRemark.Font = new System.Drawing.Font("微软雅黑", 10.5F);
-            this.TxtRemark.Location = new System.Drawing.Point(114, 253);
+            this.TxtRemark.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.TxtRemark.Location = new System.Drawing.Point(114, 288);
             this.TxtRemark.Name = "TxtRemark";
             this.TxtRemark.Size = new System.Drawing.Size(253, 26);
-            this.TxtRemark.TabIndex = 11;
+            this.TxtRemark.TabIndex = 8;
             // 
             // BtnSave
             // 
             this.BtnSave.Font = new System.Drawing.Font("微软雅黑", 10.5F);
             this.BtnSave.Image = ((System.Drawing.Image)(resources.GetObject("BtnSave.Image")));
-            this.BtnSave.Location = new System.Drawing.Point(113, 314);
+            this.BtnSave.Location = new System.Drawing.Point(113, 349);
             this.BtnSave.Name = "BtnSave";
             this.BtnSave.Size = new System.Drawing.Size(82, 37);
-            this.BtnSave.TabIndex = 12;
+            this.BtnSave.TabIndex = 9;
             this.BtnSave.Text = "保存";
             this.BtnSave.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.BtnSave.UseVisualStyleBackColor = true;
@@ -160,12 +166,13 @@
             // 
             // BtnCancel
             // 
+            this.BtnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.BtnCancel.Font = new System.Drawing.Font("微软雅黑", 10.5F);
             this.BtnCancel.Image = ((System.Drawing.Image)(resources.GetObject("BtnCancel.Image")));
-            this.BtnCancel.Location = new System.Drawing.Point(212, 314);
+            this.BtnCancel.Location = new System.Drawing.Point(212, 349);
             this.BtnCancel.Name = "BtnCancel";
             this.BtnCancel.Size = new System.Drawing.Size(82, 37);
-            this.BtnCancel.TabIndex = 13;
+            this.BtnCancel.TabIndex = 10;
             this.BtnCancel.Text = "关闭";
             this.BtnCancel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.BtnCancel.UseVisualStyleBackColor = true;
@@ -176,16 +183,16 @@
             this.CboDocumentType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CboDocumentType.Font = new System.Drawing.Font("微软雅黑", 10.5F);
             this.CboDocumentType.FormattingEnabled = true;
-            this.CboDocumentType.Location = new System.Drawing.Point(114, 123);
+            this.CboDocumentType.Location = new System.Drawing.Point(114, 158);
             this.CboDocumentType.Name = "CboDocumentType";
             this.CboDocumentType.Size = new System.Drawing.Size(253, 28);
-            this.CboDocumentType.TabIndex = 14;
+            this.CboDocumentType.TabIndex = 4;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("微软雅黑", 10.5F);
-            this.label7.Location = new System.Drawing.Point(68, 124);
+            this.label7.Location = new System.Drawing.Point(68, 159);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(40, 20);
             this.label7.TabIndex = 15;
@@ -201,10 +208,10 @@
             "秘密",
             "机密",
             "绝密"});
-            this.CboSecretLevel.Location = new System.Drawing.Point(114, 155);
+            this.CboSecretLevel.Location = new System.Drawing.Point(114, 190);
             this.CboSecretLevel.Name = "CboSecretLevel";
             this.CboSecretLevel.Size = new System.Drawing.Size(253, 28);
-            this.CboSecretLevel.TabIndex = 16;
+            this.CboSecretLevel.TabIndex = 5;
             // 
             // label8
             // 
@@ -221,24 +228,49 @@
             this.DtpCheckTime.CustomFormat = "yyyy/MM/dd HH:mm";
             this.DtpCheckTime.Font = new System.Drawing.Font("微软雅黑", 10.5F);
             this.DtpCheckTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.DtpCheckTime.ImeMode = System.Windows.Forms.ImeMode.Off;
             this.DtpCheckTime.Location = new System.Drawing.Point(114, 21);
             this.DtpCheckTime.Name = "DtpCheckTime";
             this.DtpCheckTime.Size = new System.Drawing.Size(253, 26);
-            this.DtpCheckTime.TabIndex = 18;
+            this.DtpCheckTime.TabIndex = 0;
             // 
             // NumQuantity
             // 
             this.NumQuantity.Font = new System.Drawing.Font("微软雅黑", 10.5F);
-            this.NumQuantity.Location = new System.Drawing.Point(114, 188);
+            this.NumQuantity.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.NumQuantity.Location = new System.Drawing.Point(114, 223);
             this.NumQuantity.Name = "NumQuantity";
             this.NumQuantity.Size = new System.Drawing.Size(253, 26);
-            this.NumQuantity.TabIndex = 19;
+            this.NumQuantity.TabIndex = 6;
+            // 
+            // TxtISN
+            // 
+            this.TxtISN.Font = new System.Drawing.Font("微软雅黑", 10.5F);
+            this.TxtISN.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.TxtISN.Location = new System.Drawing.Point(114, 122);
+            this.TxtISN.Name = "TxtISN";
+            this.TxtISN.Size = new System.Drawing.Size(253, 26);
+            this.TxtISN.TabIndex = 3;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("微软雅黑", 10.5F);
+            this.label9.Location = new System.Drawing.Point(54, 125);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(54, 20);
+            this.label9.TabIndex = 20;
+            this.label9.Text = "机传号:";
             // 
             // FrmEditDoc
             // 
+            this.AcceptButton = this.BtnSave;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(439, 393);
+            this.CancelButton = this.BtnCancel;
+            this.ClientSize = new System.Drawing.Size(439, 412);
+            this.Controls.Add(this.TxtISN);
+            this.Controls.Add(this.label9);
             this.Controls.Add(this.NumQuantity);
             this.Controls.Add(this.DtpCheckTime);
             this.Controls.Add(this.label8);
@@ -262,8 +294,8 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "登记新公文";
             this.Load += new System.EventHandler(this.FrmEditDoc_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.documentTypeBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NumQuantity)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.documentTypeBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -290,5 +322,7 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.DateTimePicker DtpCheckTime;
         private System.Windows.Forms.NumericUpDown NumQuantity;
+        private System.Windows.Forms.TextBox TxtISN;
+        private System.Windows.Forms.Label label9;
     }
 }

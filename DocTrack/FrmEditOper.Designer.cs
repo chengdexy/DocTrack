@@ -57,7 +57,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label2.Location = new System.Drawing.Point(55, 90);
+            this.label2.Location = new System.Drawing.Point(69, 90);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(54, 20);
             this.label2.TabIndex = 1;
@@ -67,7 +67,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label3.Location = new System.Drawing.Point(55, 134);
+            this.label3.Location = new System.Drawing.Point(69, 134);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(54, 20);
             this.label3.TabIndex = 2;
@@ -86,6 +86,7 @@
             // TxtHandman
             // 
             this.TxtHandman.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.TxtHandman.ImeMode = System.Windows.Forms.ImeMode.On;
             this.TxtHandman.Location = new System.Drawing.Point(129, 87);
             this.TxtHandman.Name = "TxtHandman";
             this.TxtHandman.Size = new System.Drawing.Size(179, 26);
@@ -94,6 +95,7 @@
             // TxtTarget
             // 
             this.TxtTarget.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.TxtTarget.ImeMode = System.Windows.Forms.ImeMode.On;
             this.TxtTarget.Location = new System.Drawing.Point(129, 131);
             this.TxtTarget.Name = "TxtTarget";
             this.TxtTarget.Size = new System.Drawing.Size(179, 26);
@@ -145,6 +147,7 @@
             this.DtpHappenTime.CustomFormat = "yyyy/MM/dd HH:mm";
             this.DtpHappenTime.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.DtpHappenTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.DtpHappenTime.ImeMode = System.Windows.Forms.ImeMode.Off;
             this.DtpHappenTime.Location = new System.Drawing.Point(129, 172);
             this.DtpHappenTime.Name = "DtpHappenTime";
             this.DtpHappenTime.Size = new System.Drawing.Size(179, 26);
@@ -154,15 +157,16 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label5.Location = new System.Drawing.Point(55, 224);
+            this.label5.Location = new System.Drawing.Point(83, 224);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(68, 20);
+            this.label5.Size = new System.Drawing.Size(40, 20);
             this.label5.TabIndex = 12;
-            this.label5.Text = "发生时间:";
+            this.label5.Text = "备注:";
             // 
             // TxtRemark
             // 
             this.TxtRemark.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.TxtRemark.ImeMode = System.Windows.Forms.ImeMode.On;
             this.TxtRemark.Location = new System.Drawing.Point(129, 221);
             this.TxtRemark.Multiline = true;
             this.TxtRemark.Name = "TxtRemark";
