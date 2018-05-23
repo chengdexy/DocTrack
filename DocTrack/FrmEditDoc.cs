@@ -50,30 +50,68 @@ namespace DocTrack
 
         private void BtnSave_Click(object sender, EventArgs e)
         {
-            //Todo: 假定文本框输入内容全部合法
-            Document doc = new Document()
+
+            if (CheckValues())
             {
-                Title = TxtTitle.Text.Trim(),
-                SerialNumber = TxtSerialNum.Text.Trim(),
-                Quantity = Convert.ToInt32(NumQuantity.Value),
-                DistributionScope = TxtDistributionScope.Text.Trim(),
-                Remark = TxtRemark.Text.Trim(),
-                DocumentType = (DocumentType)CboDocumentType.SelectedItem,
-                SecretLevel = (SecretLevel)Enum.Parse(typeof(SecretLevel), CboSecretLevel.SelectedIndex.ToString()),
-                CheckTime = DtpCheckTime.Value
-            };
-            if (_id == 0)
-            {
-                //新增模式
-                DocumentControl.AddNewDocument(doc);
+                Document doc = new Document()
+                {
+                    Title = TxtTitle.Text.Trim(),
+                    SerialNumber = TxtSerialNum.Text.Trim(),
+                    Quantity = Convert.ToInt32(NumQuantity.Value),
+                    DistributionScope = TxtDistributionScope.Text.Trim(),
+                    Remark = TxtRemark.Text.Trim(),
+                    DocumentType = (DocumentType)CboDocumentType.SelectedItem,
+                    SecretLevel = (SecretLevel)Enum.Parse(typeof(SecretLevel), CboSecretLevel.SelectedIndex.ToString()),
+                    CheckTime = DtpCheckTime.Value
+                };
+                if (_id == 0)
+                {
+                    //新增模式
+                    DocumentControl.AddNewDocument(doc);
+                }
+                else
+                {
+                    //编辑模式
+                    doc.ID = _id;
+                    DocumentControl.UpdateDocument(doc);
+                }
+                Close();
             }
-            else
+        }
+
+        private bool CheckValues()
+        {
+            if (string.IsNullOrEmpty(CboDocumentType.Text))
             {
-                //编辑模式
-                doc.ID = _id;
-                DocumentControl.UpdateDocument(doc);
+                MessageBox.Show("请选择文件类型", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                CboDocumentType.Focus();
+                return false;
             }
-            Close();
+            if (string.IsNullOrEmpty(CboSecretLevel.Text))
+            {
+                MessageBox.Show("请选择文件密级", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                CboSecretLevel.Focus();
+                return false;
+            }
+            if (string.IsNullOrEmpty(TxtTitle.Text))
+            {
+                MessageBox.Show("请输入文件标题", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                TxtTitle.Focus();
+                return false;
+            }
+            if (string.IsNullOrEmpty(TxtSerialNum.Text))
+            {
+                MessageBox.Show("请输入文号或电报号", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                TxtSerialNum.Focus();
+                return false;
+            }
+            if (NumQuantity.Value <= 0)
+            {
+                MessageBox.Show("来文份数应为大于0的整数", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                NumQuantity.Focus();
+                return false;
+            }
+            return true;
         }
 
         private void BtnCancel_Click(object sender, EventArgs e)

@@ -23,5 +23,7 @@ namespace DocTrack.Model
         public string TargetName { get; set; }
         //发生时间
         public DateTime HappenTime { get; set; }
+        //备注(2018年5月23日,刘燕提出)
+        public string Remark { get; set; }
     }
 }

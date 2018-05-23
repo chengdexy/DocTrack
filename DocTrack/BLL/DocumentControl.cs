@@ -18,7 +18,7 @@ namespace DocTrack.BLL
         {
             if (!IsEmpty())
             {
-                return Db.Documents.ToList();
+                return Db.Documents.Include(d => d.DocumentType).ToList();
             }
             return null;
         }
@@ -27,7 +27,7 @@ namespace DocTrack.BLL
         {
             if (!IsEmpty())
             {
-                List<Document> all = Db.Documents.ToList();
+                List<Document> all = Db.Documents.Include(d=>d.DocumentType).ToList();
                 List<Document> result = new List<Document>();
                 all.ForEach(doc =>
                 {

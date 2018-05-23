@@ -65,10 +65,13 @@ namespace DocTrack
                 int i = 1;
                 docList.ForEach(doc =>
                 {
-                    DgvDocument.Rows.Add(doc.ID, i, doc.Title, doc.SerialNumber, doc.SecretLevel, doc.Quantity, doc.DistributionScope, doc.Remark);
+                    DgvDocument.Rows.Add(doc.ID, i, doc.Title, doc.SerialNumber, doc.CheckTime, doc.DocumentType.Name, doc.SecretLevel, doc.Quantity, doc.DistributionScope, doc.Remark);
                     i++;
                 });
-                DgvDocument.Rows[slcDocID].Selected = true;
+                if (slcDocID < DgvDocument.RowCount)
+                {
+                    DgvDocument.Rows[slcDocID].Selected = true;
+                }
                 int docID = Convert.ToInt32(DgvDocument.SelectedRows[0].Cells["colID"].Value);
                 ShowViews(docID, slcSubID, slcOperID);
             }
@@ -130,10 +133,13 @@ namespace DocTrack
                 int i = 1;
                 operList.ForEach(oper =>
                 {
-                    DgvOper.Rows.Add(oper.ID, i, oper.HappenTime, oper.HandmanName, oper.OperationType, oper.TargetName);
+                    DgvOper.Rows.Add(oper.ID, i, oper.HappenTime, oper.HandmanName, oper.OperationType, oper.TargetName, oper.Remark);
                     i++;
                 });
-                DgvOper.Rows[slcOperID].Selected = true;
+                if (slcOperID < DgvOper.RowCount)
+                {
+                    DgvOper.Rows[slcOperID].Selected = true;
+                }
             }
         }
         //Load事件
@@ -167,7 +173,7 @@ namespace DocTrack
                 if (e.Button == MouseButtons.Left)    //点击左键
                 {
                     int docID = Convert.ToInt32(DgvDocument.SelectedRows[0].Cells["colID"].Value);
-                    ShowViews(docID,0,0);
+                    ShowViews(docID, 0, 0);
                 }
                 else if (e.Button == MouseButtons.Right)  //点击右键
                 {
@@ -194,7 +200,7 @@ namespace DocTrack
                 if (e.Button == MouseButtons.Left)
                 {
                     int viewID = Convert.ToInt32(DgvSubDoc.SelectedRows[0].Cells["colViewID"].Value);
-                    ShowOpers(viewID,0);
+                    ShowOpers(viewID, 0);
                 }
                 else if (e.Button == MouseButtons.Right)
                 {
@@ -263,7 +269,7 @@ namespace DocTrack
         {
             FrmEditDoc frm = new FrmEditDoc();
             frm.ShowDialog();
-            ShowDocs("",DgvDocument.RowCount,0,0);
+            ShowDocs("", DgvDocument.RowCount, 0, 0);
         }
         private void 新增流转ToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -275,7 +281,7 @@ namespace DocTrack
             }
             int docID = Convert.ToInt32(DgvDocument.SelectedRows[0].Cells["colID"].Value);
             DocumentControl.CreateNewSubDoc(docID);
-            ShowDocs("",DgvDocument.SelectedRows[0].Index,DgvSubDoc.RowCount,0);
+            ShowDocs("", DgvDocument.SelectedRows[0].Index, DgvSubDoc.RowCount, 0);
         }
         private void 删除流转ToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -291,7 +297,7 @@ namespace DocTrack
             {
                 DocumentControl.DeleteSubDocById(viewID);
             }
-            ShowViews(docID,0,0);
+            ShowViews(docID, 0, 0);
         }
         private void 新增操作ToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -303,7 +309,7 @@ namespace DocTrack
             int viewID = Convert.ToInt32(DgvSubDoc.SelectedRows[0].Cells["colViewID"].Value);
             FrmEditOper frm = new FrmEditOper(viewID);
             frm.ShowDialog();
-            ShowDocs("", DgvDocument.SelectedRows[0].Index, DgvSubDoc.SelectedRows[0].Index, DgvOper.RowCount );
+            ShowDocs("", DgvDocument.SelectedRows[0].Index, DgvSubDoc.SelectedRows[0].Index, DgvOper.RowCount);
             //PopulateDataGridView();
         }
         private void 删除操作ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -339,6 +345,27 @@ namespace DocTrack
         private void TxtSearch_Enter(object sender, EventArgs e)
         {
             PopulateDataGridView();
+        }
+
+        private void FrmMain_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.N && e.Modifiers == Keys.Control)         //Ctrl+N
+            {
+                登记公文ToolStripMenuItem_Click(null, null);
+            }
+            if (e.KeyCode == Keys.L && e.Modifiers == Keys.Control)         //Ctrl+L
+            {
+                新增流转ToolStripMenuItem_Click(null, null);
+            }
+            if (e.KeyCode == Keys.C && e.Modifiers == Keys.Control)         //Ctrl+L
+            {
+                新增操作ToolStripMenuItem_Click(null, null);
+            }
+            if (e.KeyCode == Keys.F && e.Modifiers == Keys.Control)         //Ctrl+L
+            {
+                PopulateDataGridView();
+                TxtSearch.Focus();
+            }
         }
     }
 }

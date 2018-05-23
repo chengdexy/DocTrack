@@ -35,16 +35,42 @@ namespace DocTrack
 
         private void BtnSave_Click(object sender, EventArgs e)
         {
-            //Todo: 这里假定输入项全合法
-            CirculationOperation oper = new CirculationOperation
+            if (CheckValues())
             {
-                HappenTime = DtpHappenTime.Value,
-                HandmanName = TxtHandman.Text.Trim(),
-                TargetName = TxtTarget.Text.Trim(),
-                OperationType = (OperationType)Enum.Parse(typeof(OperationType), CboOperationType.SelectedIndex.ToString())
-            };
-            DocumentControl.AddNewOperation(_id, oper);
-            Close();
+                CirculationOperation oper = new CirculationOperation
+                {
+                    HappenTime = DtpHappenTime.Value,
+                    HandmanName = TxtHandman.Text.Trim(),
+                    TargetName = TxtTarget.Text.Trim(),
+                    OperationType = (OperationType)Enum.Parse(typeof(OperationType), CboOperationType.SelectedIndex.ToString()),
+                    Remark = TxtRemark.Text.Trim()
+                };
+                DocumentControl.AddNewOperation(_id, oper);
+                Close();
+            }
+        }
+
+        private bool CheckValues()
+        {
+            if (string.IsNullOrEmpty(CboOperationType.Text))
+            {
+                MessageBox.Show("请选择操作类型", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                CboOperationType.Focus();
+                return false;
+            }
+            if (string.IsNullOrEmpty(TxtHandman.Text))
+            {
+                MessageBox.Show("请输入经手人", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                TxtHandman.Focus();
+                return false;
+            }
+            if (string.IsNullOrEmpty(TxtTarget.Text))
+            {
+                MessageBox.Show("请输入目标人", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                TxtTarget.Focus();
+                return false;
+            }
+            return true;
         }
 
         private void BtnCancel_Click(object sender, EventArgs e)
